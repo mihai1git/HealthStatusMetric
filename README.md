@@ -6,7 +6,7 @@ The Lambda function took part from an AWS Cloud solution for a failover mechanis
 Online status monitoring for main WordPress site is done using WordPress Jetpack plugin. The online status is converted to health status, monitored by Route53 DNS, that makes the switch among the main and failover websites.
 This lambda is presented in below architecture highlighted in red.
 
-![Failover website](DNS_failover_v1_w.png "Failover website")
+![Failover website](DNS_failover_v1_w.png "Failover website"){:target="_blank"}
 
 ## 2. Application functionality
 The project is a Maven project that contains the Lambda function highlighted in the above architecture diagram. It can be built, but the deploy in AWS Cloud will not work as an application due to missing dependencies.
