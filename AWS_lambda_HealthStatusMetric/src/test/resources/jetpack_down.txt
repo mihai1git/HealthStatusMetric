@@ -1,0 +1,351 @@
+Return-Path: <contact=mihaiadam.com@bounces.jetpack.com>
+Received: from smtp2-3.dfw.wordpress.com (smtp2-3.dfw.wordpress.com [192.0.80.173])
+ by inbound-smtp.us-west-2.amazonaws.com with SMTP id q4bkqptmk197dp2enqi6tinvb2shdbda10097b81
+ for contact@mihaiadam.com;
+ Sat, 16 Nov 2024 11:47:30 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of bounces.jetpack.com designates 192.0.80.173 as permitted sender) client-ip=192.0.80.173; envelope-from=contact=mihaiadam.com@bounces.jetpack.com; helo=smtp2-3.dfw.wordpress.com;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of bounces.jetpack.com designates 192.0.80.173 as permitted sender) client-ip=192.0.80.173; envelope-from=contact=mihaiadam.com@bounces.jetpack.com; helo=smtp2-3.dfw.wordpress.com;
+ dkim=pass header.i=@jetpack.com;
+ dmarc=pass header.from=jetpack.com;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFFeXUyY1dBTDZ3MXY0ODBrTjJjeVVVNG9iQnNtYkNkTEhJdkVIZk5sMVpEREFzUGsvbW9CSlhDZ082SVJXS1dkV1ZmSGNFUGdqMkFTNFJOMnVHTzM3VCtuNkRTc1hmbXFsdDg3MG82ZXJVVFo4blNXTnlicERzZGVUbkJFT0o0UHBVWlZFWEZrT1hZamtvRVovNWZWOXBTNzhHOFVMdkJWRUMzaUgxZnJidGFWbHlNVW1Sa05TK0MySWJESVlBWDI5dzVrcDhmeXFIODhBNm1NMWcxM0phQUZrcitvWmJsK2RvYXpoY0k0dHFNUzlKUmtYV2RWNExDd3hYR0oxYm5qMkJDalFMSVJiRitMZnJMTzIvTTFIM0x2RW51VXc3U0s1U21CaDJ3blhjeXMybmx2VXg4L3VucUIxTEhqZHV3NGc9
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=32Qg07Mk6BOYSe/JuckB+yy7P9j/A0xSHg1eOtN5L8pebvGJRBialSYXL1zooCjerA6iowxQIfVAnEwo0PA08mTjTuU3h/vtXtRI+PD1DL7C+6eEo1s92gqQj8m83iXuIYF1Gkn+LYXAk8MjTdvw17F6UiOo5cGwPlVtXk2DC6c=; c=relaxed/simple; s=7v7vs6w47njt4pimodk5mmttbegzsi6n; d=amazonses.com; t=1731757651; v=1; bh=9kJEQKW/3OcMFvpJyO7GBJPmw5wZJPnu1qblTi9fa+Y=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=jetpack.com;
+	s=automattic1; t=1731757649;
+	bh=9kJEQKW/3OcMFvpJyO7GBJPmw5wZJPnu1qblTi9fa+Y=;
+	h=Date:To:From:Subject:From;
+	b=M+5b4qjXydQbhq+2ATiKVplJf8k3yn8tHMjWungc7kCFWGF5vMNtSYScqxGdfAFsR
+	 p627wpLUqVOeQsGqzfRJra0c2oukD0uBtSOYIwugMNmnc6vol2+RCT/UUpj/7wdKu9
+	 HZNuWoBtvTdzstU/OfOMpZQOWGpnRnca99V7+qZ5XTTl8NSIq3feNagyGh2WtzxQbX
+	 Ip3bcpqAf3FjKhse8AwxoVeKpPC1a2xO06aWufQg3rcCZVuvdOF9ZlXQOifOR3U6GO
+	 2Rf75V/FSvRQrEj3oB5P/xP0QqZtx4zv33endR76TVFUY+aQPV1NldlMVfb2daA5vs
+	 sB04SM3y1nmSg==
+Received: from wordpress.com (unknown [192.0.87.222])
+	by smtp2.dfw.wordpress.com (Postfix) with ESMTP id 4XrBvj4sppz9sw9
+	for <contact@mihaiadam.com>; Sat, 16 Nov 2024 11:47:29 +0000 (UTC)
+Date: Sat, 16 Nov 2024 11:47:29 +0000
+To: contact@mihaiadam.com
+From: Jetpack Support <support+monitor@jetpack.com>
+Subject: Alert: MIHAI ADAM appears to be offline or unresponsive
+Message-ID: <E6f1zFEGzKuP788AWzAEWg0I87vBA8wGxVOyew3Bmo@wordpress.com>
+X-Automattic-Campaign-ID: jetpack:jetmon-site-down
+Feedback-ID: jetmon-site-down:156921155:wpcom:automattic
+X-Automattic-Destination: Y29udGFjdEBtaWhhaWFkYW0uY29t
+X-Automattic-Tracking: 0:2:Y50L0YKvUwZFktliKhEEyg==.uRNwrJWYTHeC1vZk+yz2enXO1/TZwgFHf0TlMcIONd0xThIPfduBUzO2EPKS37E/EOs3/OINvvTpal1LL+aTBuNCgCWsDBxy4YSPWY82inQ=:214785651:0:0
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1=_E6f1zFEGzKuP788AWzAEWg0I87vBA8wGxVOyew3Bmo"
+Content-Transfer-Encoding: 8bit
+MIH-mail-agent: aws_ses
+
+--b1=_E6f1zFEGzKuP788AWzAEWg0I87vBA8wGxVOyew3Bmo
+Content-Type: text/plain; charset=us-ascii
+
+Hi mihai adam,
+
+mihaiadam.com did not load when Jetpack Monitor last checked on it.
+
+Your site is responding intermittently, or extremely slowly. This can indicate an overloaded, under-powered, or misconfigured server. Your site is probably loading for some users, but not for everyone.
+
+Error reference: 214785651/intermittent
+
+Start by visiting your site to see if you're able to load it. Jetpack Monitor may have just recorded a momentary glitch that's since been resolved, and you can ignore this email.
+
+If you're unable to load your site, check your host's control panel or contact their support team: they'll have more detail about what is happening. Be sure to share the error information above with them.
+
+Get more help: https://jetpack.com/support/what-to-do-if-your-site-is-down/
+
+
+
+------------------------
+
+Why am I receiving this email?
+
+
+
+JetpackPlan
+
+------------------------
+
+
+
+--b1=_E6f1zFEGzKuP788AWzAEWg0I87vBA8wGxVOyew3Bmo
+Content-Type: text/html; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.=
+w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">=0A<html xmlns=3D"http://www.=
+w3.org/1999/xhtml">=0A<head>=0A=09<title>Jetpack</title>=0A=09<meta http-eq=
+uiv=3D"Content-Type" content=3D"text/html charset=3DUTF-8">=0A=09<meta http=
+-equiv=3D"Content-Language" content=3D"en-us">=0A=09<!--[if lt mso 12]>=0A<=
+style type=3D"text/css">=0A=09.outlook-hide-pre-2007 {=0A=09=09height:0 !im=
+portant;=0A=09=09max-height:0 !important; /* Gmail*/=0A=09=09display:none !=
+important; /* Generic*/=0A=09=09mso-hide:all !important; /* Outlook clients=
+*/=0A=09=09overflow:hidden !important; /* Generic */=0A=09=09font-size:0 !i=
+mportant; /* Be careful with this one, only use if absolutely required */=
+=0A=09}=0A=09h1,h2,h3,h4 {=0A=09=09margin: 0 !important;=0A=09=09padding: 0=
+ !important;=0A=09}=0A=09table.footer tr td.top {=0A=09=09height: 40px !imp=
+ortant;=0A=09}=0A=09p.btn-calltoaction {=0A=09=09margin-top: 0 !important;=
+=0A=09=09margin-bottom: 0 !important;=0A=09}=0A</style>=0A<![endif]-->=0A<!=
+--[if (gte mso 9)|(IE)]>=0A<style type=3D"text/css">=0A=09body, .body-wrap =
+{=0A=09=09font-size: 1em !important;=0A=09=09text-align: center !important;=
+=0A=09}=0A=09h1,h2,h3,h4 {=0A=09=09margin: 0 0 1em !important;=0A=09}=0A=09=
+h1 {=0A=09=09margin-top: 0 !important;=0A=09=09margin-bottom: 2em !importan=
+t;=0A=09=09font-size: 1.5em !important;=0A=09}=0A=09h2 {=0A=09=09font-size:=
+ 1.125em !important;=0A=09=09margin-top: 1em !important;=0A=09=09margin-bot=
+tom: 1em !important;=0A=09}=0A=09h5 {=0A=09=09font-size: 1em !important;=0A=
+=09}=0A=09h1, h2 {=0A=09=09font-weight: bold !important;=0A=09}=0A=09p, ul,=
+ ol {=0A=09=09font-size: 1.125em !important;=0A=09=09margin-bottom: 1em !im=
+portant;=0A=09}=0A=09.container {=0A=09=09width: 40em !important;=0A=09=09t=
+ext-align: left !important;=0A=09}=0A=09.content-mc-region {=0A=09=09margin=
+-bottom: 2.5em !important;=0A=09=09text-align: left !important;=0A=09}=0A=
+=09.content-mc-region p,=0A=09.content-mc-region ul,=0A=09.content-mc-regio=
+n ol {=0A=09=09font-size: 1.125em !important;=0A=09}=0A=09.content-mc-regio=
+n ol,=0A=09.content-mc-region ul {=0A=09=09padding-right: 0;=0A=09=09paddin=
+g-top: 0;=0A=09}=0A=09.content-mc-region ol {=0A=09=09padding-left: 25px;=
+=0A=09}=0A=09ol, ul {=0A=09=09margin: 0 0 0 1.5em !important;=0A=09=09paddi=
+ng: 0 !important;=0A=09=09list-style-position: inside !important;=0A=09}=0A=
+=09li {=0A=09=09padding-left: 0=0A=09=09margin-left: 0 !important;=0A=09=09=
+margin-bottom: 0.5em !important;=0A=09}=0A=09p.btn-calltoaction {=0A=09=09m=
+argin-top: 2.5em !important;=0A=09=09margin-bottom: 2.5em !important;=0A=09=
+}=0A=09.btn-calltoaction a {=0A=09=09border: solid 0.375em #03AADC !importa=
+nt;=0A=09=09padding: 0 !important;=0A=09=09color: #FFFFFF !important;=0A=09=
+}=0A=09td.avatar {=0A=09=09padding-top: 1.25em !important;=0A=09=09padding-=
+right: 1.25em !important;=0A=09=09padding-bottom: 1.25em !important;=0A=09}=
+=0A=09td.banner {=0A=09=09padding-bottom: 2.25em !important;=0A=09}=0A=09.a=
+pp-download {=0A=09=09border: 0 !important;=0A=09=09background-color: trans=
+parent !important;=0A=09}=0A=09.app-download td {=0A=09=09padding: 0 !impor=
+tant;=0A=09}=0A=09.extra-cta {=0A=09=09padding: 0 !important;=0A=09}=0A=09t=
+able.footer tr td.top {=0A=09=09padding-top: 1.4em !important;=0A=09}=0A=09=
+table.footer tr td.bottom {=0A=09=09padding-bottom: 1.4em !important;=0A=09=
+}=0A=09table.footer tr td.tw,=0A=09table.footer tr td.fb {=0A=09=09padding:=
+ 0.875em !important;=0A=09=09padding-top: 0 !important;=0A=09}=0A=09.signat=
+ure {=0A=09=09margin-bottom: 2.25em !important;=0A=09}=0A=09.signature td.t=
+ext {=0A=09=09text-align: left !important;=0A=09}=0A=09table.footer p a {=
+=0A=09=09color: #000000 !important;=0A=09}=0A=09.outlook-hide {=0A=09=09max=
+-height:0 !important; /* Gmail*/=0A=09=09display:none !important; /* Generi=
+c*/=0A=09=09mso-hide:all !important; /* Outlook clients*/=0A=09=09overflow:=
+hidden !important; /* Generic */=0A=09=09font-size:0 !important; /* Be care=
+ful with this one, only use if absolutely required */=0A=09}=0A</style>=0A<=
+![endif]-->=09=0A<style type=3D"text/css">@media screen and (max-width: 599=
+px) {#table_body{margin: 0px !important;}.wrapper{width: 100% !important;=
+=0A        min-width: 0 !important;}h1{font-size: 26px !important;=0A      =
+  line-height: 30px !important;}h2{font-size: 22px !important;=0A        li=
+ne-height: 26px !important;}p{font-size: 16px !important;=0A        line-he=
+ight: 24px !important;}}</style>=0A<style>=0A        .apple-mail a {=0A=09=
+=09=09color: inherit !important;=0A=09=09=09font-family: inherit !important=
+;=0A=09=09=09font-size: inherit !important;=0A=09=09=09font-weight: inherit=
+ !important;=0A=09=09=09line-height: inherit !important;=0A=09=09=09text-de=
+coration: none !important;=0A        }=0A    </style></head>=0A<body style=
+=3D"-webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; he=
+ight: 100%; font-size: 1em; margin: 0; padding: 0; background: #DCDCDE; fon=
+t-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; dire=
+ction: ltr; width: 100%; clear: both;">=0A=0A<span class=3D"preheader" styl=
+e=3D"color: #DCDCDE; font-size: 1px; display: none;"></span>=0A=0A<table id=
+=3D"table_body" cellspacing=3D"0" role=3D"presentation" style=3D"border-col=
+lapse: collapse; width: 100%; padding: 0; margin: 15px 0; background: #DCDC=
+DE; border: 0;">=0A=09<tbody>=0A=09<tr>=0A=09=09<td style=3D"border-collaps=
+e: collapse;">=0A=09=09=09<table id=3D"table_wrapper" class=3D"wrapper" wid=
+th=3D"600" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" bgcolor=3D"=
+#ffffff" role=3D"presentation" style=3D"border-collapse: collapse; backgrou=
+nd: #ffffff; border: 1px solid #C3C4C7; margin: 0 auto; min-width: 600px; b=
+order-radius: 3px; margin-top: 10px;">=0A=09=09=09=09<tbody>=0A=09=09=09=09=
+<tr>=0A=09=09=09=09=09<td style=3D"border-collapse: collapse;">=0A=09=09=09=
+=09=09=09<table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" role=3D"=
+presentation" style=3D"border-collapse: collapse;">=0A=09=09=09=09=09=09=09=
+<tbody>=0A=09=09=09=09=09=09=09<tr>=0A=09=09=09=09=09=09=09=09<td valign=3D=
+"middle" class=3D"header-left" style=3D"border-collapse: collapse; padding:=
+ 12px 0 8px 25px; border-bottom-width: 1px; border-bottom-color: #DCDCDE; b=
+order-bottom-style: solid; text-align: left; width: 50%;">=0A=09=09=09=09=
+=09=09=09=09=09<img src=3D"https://s0.wp.com/wp-content/mu-plugins/html-ema=
+ils/themes/jetpack/images/jetpack-logo-horizontal-rgb.png" width=3D"91" hei=
+ght=3D"25" alt=3D"Jetpack" style=3D"border: 0 none; height: auto; line-heig=
+ht: 100%; outline: none; text-decoration: none; display: inline-block;">=0A=
+=09=09=09=09=09=09=09=09</td>=0A=09=09=09=09=09=09=09=09<td valign=3D"middl=
+e" class=3D"header-right" style=3D"border-collapse: collapse; padding: 12px=
+ 25px 8px 0; border-bottom-width: 1px; border-bottom-color: #DCDCDE; border=
+-bottom-style: solid; text-align: right; width: 50%;">=0A=09=09=09=09=09=09=
+=09=09=09<img src=3D"https://s0.wp.com/wp-content/mu-plugins/html-emails/th=
+emes/delta/images/logo.png" width=3D"25" height=3D"25" alt=3D"WordPress.com=
+" style=3D"border: 0 none; height: auto; line-height: 100%; outline: none; =
+text-decoration: none; display: inline-block;">=0A=09=09=09=09=09=09=09=09<=
+/td>=0A=09=09=09=09=09=09=09</tr>=0A=09=09=09=09=09=09=09</tbody>=0A=09=09=
+=09=09=09=09</table>=0A=09=09=09=09=09</td>=0A=09=09=09=09</tr>=0A=09=09=09=
+=09=0A=09<tr class=3D"jetpack-status-alert" style=3D"font-family: Helvetica=
+ Neue, Helvetica, sans-serif;">=0A=09=09<td class=3D"jetpack-status-alert-h=
+eader" align=3D"left" style=3D"border-collapse: collapse; background-color:=
+ #FFFFFF; padding: 20px 40px 20px 40px;">=0A=09=09=09<h1 style=3D"font-size=
+: 24px; line-height: 30px; color: #23282D; font-weight: normal; margin: 0;"=
+>=0A=09=09=09=09Your site appears to be down=09=09=09</h1>=0A=09=09</td>=0A=
+=09</tr>=0A=0A=09<tr class=3D"jetpack-status-alert" style=3D"font-family: H=
+elvetica Neue, Helvetica, sans-serif;">=0A=09=09<td class=3D"jetpack-status=
+-alert-body" align=3D"left" style=3D"border-collapse: collapse; background-=
+color: #FFFFFF; padding: 4px 40px 4px 40px;">=0A=09=09=09<p style=3D"direct=
+ion: ltr; font-size: 16px; line-height: 24px; color: #23282D;">=0A=09=09=09=
+=09<a href=3D"https://mihaiadam.com" style=3D"font-size: 16px; line-height:=
+ 24px; color: #23282D;">mihaiadam.com</a> did not load when Jetpack Monitor=
+ last checked on it.=09=09=09</p>=0A=09=09=09<h2>What's happening?</h2>=0A=
+=09=09=09<p style=3D"direction: ltr; font-size: 16px; line-height: 24px; co=
+lor: #23282D;">Your site is responding intermittently, or extremely slowly.=
+ This can indicate an overloaded, under-powered, or misconfigured server. Y=
+our site is probably loading for some users, but not for everyone.</p>=09=
+=09=09<p style=3D"direction: ltr; font-size: 16px; line-height: 24px; color=
+: #23282D;">=0A=09=09=09Error reference: 214785651/intermittent=09=09=09</p=
+>=0A=09=09=09<h2>What should you do now?</h2>=0A=09=09=09<p style=3D"direct=
+ion: ltr; font-size: 16px; line-height: 24px; color: #23282D;">=0A=09=09=09=
+=09Start by <a href=3D"https://mihaiadam.com" style=3D"font-size: 16px; lin=
+e-height: 24px; color: #23282D;">visiting your site</a> to see if you're ab=
+le to load it. Jetpack Monitor may have just recorded a momentary glitch th=
+at's since been resolved, and you can ignore this email.=09=09=09</p>=0A=09=
+=09=09<p style=3D"direction: ltr; font-size: 16px; line-height: 24px; color=
+: #23282D;">=0A=09=09=09=09If you're unable to load your site, check your h=
+ost's control panel or contact their support team: they'll have more detail=
+ about what is happening. Be sure to share the error information above with=
+ them.=09=09=09</p>=0A=09=09</td>=0A=09</tr>=0A=0A=09=09<tr class=3D"jetpac=
+k-status-alert" style=3D"font-family: Helvetica Neue, Helvetica, sans-serif=
+;">=0A=09=09<td class=3D"jetpack-status-alert-cta" style=3D"border-collapse=
+: collapse; background-color: #FFFFFF; padding: 20px 40px 40px 40px;">=0A=
+=09=09=09=0A<table align=3D"center" class=3D"jetpack-button" role=3D"presen=
+tation" style=3D"border-collapse: collapse; width: 100%;">=0A=09<tbody>=0A=
+=09=09<tr>=0A=09=09=09<td align=3D"center" style=3D"border-collapse: collap=
+se; text-align: center;">=0A=09=09=09=09<!--[if mso]>=0A=09=09=09=09<v:roun=
+drect xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:w=3D"urn:schemas-micr=
+osoft-com:office:word" href=3D"https://jetpack.com/support/what-to-do-if-yo=
+ur-site-is-down/" style=3D"height:40px;v-text-anchor:middle;width:200px;" a=
+rcsize=3D"10%" strokecolor=3D"#008D1E" fillcolor=3D"#00BE28">=0A=09=09=09=
+=09=09<w:anchorlock/>=0A=09=09=09=09=09<center style=3D"color:#ffffff;font-=
+family:sans-serif;font-size:13px;font-weight:bold;">Get more help</center>=
+=0A=09=09=09=09</v:roundrect>=0A=09=09=09=09<![endif]-->=0A=09=09=09=09<!--=
+[if !mso]><!-->=0A=09=09=09=09<a rel=3D"noopener" target=3D"_blank" href=3D=
+"https://public-api.wordpress.com/bar/?stat=3Dgroovemails-events&amp;bin=3D=
+wpcom_email_click&amp;redirect_to=3Dhttps%3A%2F%2Fjetpack.com%2Fsupport%2Fw=
+hat-to-do-if-your-site-is-down%2F&amp;sr=3D1&amp;signature=3D8e9518e40f6875=
+785482b252dbc830db&amp;user=3D156921155&amp;_e=3DeyJlcnJvciI6bnVsbCwiYmxvZ1=
+9pZCI6MjE0Nzg1NjUxLCJibG9nX2xhbmciOiJlbiIsInNpdGVfaWRfbGFiZWwiOiJqZXRwYWNrI=
+iwiX3VpIjoxNTY5MjExNTUsImxvY2FsZSI6ImVuIiwiY3VycmVuY3kiOiJVU0QiLCJjb3VudHJ5=
+X2NvZGVfc2lnbnVwIjoiUk8iLCJzaWdudXBfZmxvd19uYW1lIjoibWFpbiIsImVtYWlsX2RvbWF=
+pbiI6Im1paGFpYWRhbS5jb20iLCJ1c2VyX2VtYWlsIjoiY29udGFjdEBtaWhhaWFkYW0uY29tIi=
+wiZGF0ZV9zZW50IjoiMjAyNC0xMS0xNiIsImVtYWlsX2lkIjoiMjU5NTkwOGMzMjRkZWJlYjk2Y=
+jY0NDk0NDkwYmM2YjQiLCJlbWFpbF9uYW1lIjoiamV0bW9uLXNpdGUtZG93biIsInRlbXBsYXRl=
+IjoiamV0bW9uLXNpdGUtZG93biIsImFuY2hvcl90ZXh0IjoiR2V0IG1vcmUgaGVscCIsIl9kciI=
+6bnVsbCwiX2RsIjoiXC9qZXRtb25cLz9kYXRhPXtcXFwiYmxvZ19pZFxcXCI6MjE0Nzg1NjUxLF=
+xcXCJtb25pdG9yX3VybFxcXCI6XFxcImh0dHBzOlwvXC9taWhhaWFkYW0uY29tXFxcIixcXFwic=
+3RhdHVzX2lkXFxcIjowLFxcXCJsYXN0X2NoZWNrXFxcIjpcXFwiMjAyNC0xMS0xNlQxMTo0Njo1=
+MS43NzNaXFxcIixcXFwibGFzdF9zdGF0dXNfY2hhbmdlXFxcIjpcXFwiMjAyNC0xMS0wNVQxMTo=
+1MDoyOC4wMDBaXFxcIixcXFwiY2hlY2tzXFxcIjpbe1xcXCJ0eXBlXFxcIjoxLFxcXCJob3N0XF=
+xcIjpcXFwiamV0bW9uLUMwMy1SMDEtMDguZGZ3LndvcmRwcmVzcy5jb21cXFwiLFxcXCJzdGF0d=
+XNcXFwiOjAsXFxcInJ0dFxcXCI6Mjc5LFxcXCJjb2RlXFxcIjo0MDQsXFxcImVycm9yX2NvZGVc=
+XFwiOjB9LHtcXFwidHlwZVxcXCI6MSxcXFwiaG9zdFxcXCI6XFxcImpldG1vbi1DMDMtUjAxLTA=
+4LmRmdy53b3JkcHJlc3MuY29tXFxcIixcXFwic3RhdHVzXFxcIjowLFxcXCJydHRcXFwiOjg2Nz=
+ksXFxcImNvZGVcXFwiOjQwNCxcXFwiZXJyb3JfY29kZVxcXCI6MH0se1xcXCJ0eXBlXFxcIjoyL=
+FxcXCJob3N0XFxcIjpcXFwiNTQuMjE3LjIwMS4yNDNcXFwiLFxcXCJzdGF0dXNcXFwiOjAsXFxc=
+InJ0dFxcXCI6NTEyLFxcXCJjb2RlXFxcIjo0MDR9LHtcXFwidHlwZVxcXCI6MixcXFwiaG9zdFx=
+cXCI6XFxcIjU0LjIzMi4xMTYuNFxcXCIsXFxcInN0YXR1c1xcXCI6MCxcXFwicnR0XFxcIjo3Mj=
+AsXFxcImNvZGVcXFwiOjQwNH0se1xcXCJ0eXBlXFxcIjoyLFxcXCJob3N0XFxcIjpcXFwiMTIyL=
+jI0OC4yNDUuMjQ0XFxcIixcXFwic3RhdHVzXFxcIjowLFxcXCJydHRcXFwiOjMwMTY1LFxcXCJj=
+b2RlXFxcIjowfV0sXFxcInRva2VuXFxcIjpcXFwiYjY5ZWI0Y2E0YjRhZTE5ZThlNGYyZTMxMjl=
+kYTdmZDNcXFwifSIsIl91dCI6IndwY29tOnVzZXJfaWQiLCJfdWwiOiJtaWhhaXdwcmVzcyIsIl=
+9lbiI6IndwY29tX2VtYWlsX2NsaWNrIiwiX3RzIjoxNzMxNzU3NjQ4OTE3LCJicm93c2VyX3R5c=
+GUiOiJwaHAtYWdlbnQiLCJfYXVhIjoid3Bjb20tdHJhY2tzLWNsaWVudC12MC4zIiwiYmxvZ190=
+eiI6MCwidXNlcl9sYW5nIjoiZW4ifQ=3D&amp;_z=3Dz" style=3D"-webkit-text-size-ad=
+just: none; background-color: #069E08; border-radius: 4px; color: #ffffff; =
+display: inline-block; font-family: Helvetica Neue, Helvetica, sans-serif; =
+font-size: 16px; font-weight: 400; line-height: 45px; mso-hide: all; paddin=
+g: 0px 35px 0px 35px; text-align: center; text-decoration: none; white-spac=
+e: nowrap;">=0A=09=09=09=09=09Get more help=09=09=09=09</a>=0A=09=09=09=09<=
+!--<![endif]-->=0A=09=09=09</td>=0A=09=09</tr>=0A=09</tbody>=0A</table>=0A=
+=09=09</td>=0A=09</tr>=0A=09=0A=0A=09=0A=09<tr class=3D"jetpack-status-aler=
+t" style=3D"font-family: Helvetica Neue, Helvetica, sans-serif;">=0A=09=09<=
+td class=3D"jetpack-status-alert-body" align=3D"left" style=3D"border-colla=
+pse: collapse; background-color: #FFFFFF; padding: 4px 40px 4px 40px;">=0A=
+=09=09=09<p style=3D"direction: ltr; font-size: 16px; line-height: 24px; co=
+lor: #23282D;">=0A=09=09=09=09Control and monitor these alerts in your <a h=
+ref=3D"https://public-api.wordpress.com/bar/?stat=3Dgroovemails-events&amp;=
+bin=3Djetpack_email_click&amp;redirect_to=3Dhttps%3A%2F%2Fwww.wordpress.com=
+%2Fsettings%2Fsecurity%2Fmihaiadam.com&amp;sr=3D1&amp;signature=3D4f277bfb1=
+303cae6a72034d8f1ba1a03&amp;user=3D156921155&amp;_e=3DeyJlcnJvciI6bnVsbCwiY=
+mxvZ19pZCI6MjE0Nzg1NjUxLCJibG9nX2xhbmciOiJlbiIsInNpdGVfaWRfbGFiZWwiOiJqZXRw=
+YWNrIiwiX3VpIjoxNTY5MjExNTUsImxvY2FsZSI6ImVuIiwiY3VycmVuY3kiOiJVU0QiLCJjb3V=
+udHJ5X2NvZGVfc2lnbnVwIjoiUk8iLCJzaWdudXBfZmxvd19uYW1lIjoibWFpbiIsImVtYWlsX2=
+RvbWFpbiI6Im1paGFpYWRhbS5jb20iLCJ1c2VyX2VtYWlsIjoiY29udGFjdEBtaWhhaWFkYW0uY=
+29tIiwiZGF0ZV9zZW50IjoiMjAyNC0xMS0xNiIsImVtYWlsX2lkIjoiMjU5NTkwOGMzMjRkZWJl=
+Yjk2YjY0NDk0NDkwYmM2YjQiLCJlbWFpbF9uYW1lIjoiamV0bW9uLXNpdGUtZG93biIsInRlbXB=
+sYXRlIjoiamV0bW9uLXNpdGUtZG93biIsIl9kciI6bnVsbCwiX2RsIjoiXC9qZXRtb25cLz9kYX=
+RhPXtcXFwiYmxvZ19pZFxcXCI6MjE0Nzg1NjUxLFxcXCJtb25pdG9yX3VybFxcXCI6XFxcImh0d=
+HBzOlwvXC9taWhhaWFkYW0uY29tXFxcIixcXFwic3RhdHVzX2lkXFxcIjowLFxcXCJsYXN0X2No=
+ZWNrXFxcIjpcXFwiMjAyNC0xMS0xNlQxMTo0Njo1MS43NzNaXFxcIixcXFwibGFzdF9zdGF0dXN=
+fY2hhbmdlXFxcIjpcXFwiMjAyNC0xMS0wNVQxMTo1MDoyOC4wMDBaXFxcIixcXFwiY2hlY2tzXF=
+xcIjpbe1xcXCJ0eXBlXFxcIjoxLFxcXCJob3N0XFxcIjpcXFwiamV0bW9uLUMwMy1SMDEtMDguZ=
+GZ3LndvcmRwcmVzcy5jb21cXFwiLFxcXCJzdGF0dXNcXFwiOjAsXFxcInJ0dFxcXCI6Mjc5LFxc=
+XCJjb2RlXFxcIjo0MDQsXFxcImVycm9yX2NvZGVcXFwiOjB9LHtcXFwidHlwZVxcXCI6MSxcXFw=
+iaG9zdFxcXCI6XFxcImpldG1vbi1DMDMtUjAxLTA4LmRmdy53b3JkcHJlc3MuY29tXFxcIixcXF=
+wic3RhdHVzXFxcIjowLFxcXCJydHRcXFwiOjg2NzksXFxcImNvZGVcXFwiOjQwNCxcXFwiZXJyb=
+3JfY29kZVxcXCI6MH0se1xcXCJ0eXBlXFxcIjoyLFxcXCJob3N0XFxcIjpcXFwiNTQuMjE3LjIw=
+MS4yNDNcXFwiLFxcXCJzdGF0dXNcXFwiOjAsXFxcInJ0dFxcXCI6NTEyLFxcXCJjb2RlXFxcIjo=
+0MDR9LHtcXFwidHlwZVxcXCI6MixcXFwiaG9zdFxcXCI6XFxcIjU0LjIzMi4xMTYuNFxcXCIsXF=
+xcInN0YXR1c1xcXCI6MCxcXFwicnR0XFxcIjo3MjAsXFxcImNvZGVcXFwiOjQwNH0se1xcXCJ0e=
+XBlXFxcIjoyLFxcXCJob3N0XFxcIjpcXFwiMTIyLjI0OC4yNDUuMjQ0XFxcIixcXFwic3RhdHVz=
+XFxcIjowLFxcXCJydHRcXFwiOjMwMTY1LFxcXCJjb2RlXFxcIjowfV0sXFxcInRva2VuXFxcIjp=
+cXFwiYjY5ZWI0Y2E0YjRhZTE5ZThlNGYyZTMxMjlkYTdmZDNcXFwifSIsIl91dCI6IndwY29tOn=
+VzZXJfaWQiLCJfdWwiOiJtaWhhaXdwcmVzcyIsIl9lbiI6ImpldHBhY2tfZW1haWxfY2xpY2siL=
+CJfdHMiOjE3MzE3NTc2NDgxMDMsImJyb3dzZXJfdHlwZSI6InBocC1hZ2VudCIsIl9hdWEiOiJ3=
+cGNvbS10cmFja3MtY2xpZW50LXYwLjMiLCJibG9nX3R6IjowLCJ1c2VyX2xhbmciOiJlbiJ9&am=
+p;_z=3Dz" style=3D"font-size: 16px; line-height: 24px; color: #23282D;">Jet=
+pack Monitor settings</a>.=09=09=09</p>=0A=09=09</td>=0A=09</tr>=0A=0A=09=
+=0A=0A=0A<tr class=3D"jetpack-onboarding" style=3D"font-family: Helvetica N=
+eue, Helvetica, sans-serif;">=0A=09<td class=3D"jetpack-footer-section" ali=
+gn=3D"center" style=3D"border-collapse: collapse; background-color: #EEEEEE=
+; padding: 40px;">=0A=0A=09=09=0A=09=09<p class=3D"jetpack-footer-body-text=
+" style=3D"direction: ltr; color: #444444; font-size: 15px; line-height: 18=
+px;">=0A=09=09=09Automattic, Inc.=0A=09=09=09<br>=0A=09=09=09<a href=3D"htt=
+ps://public-api.wordpress.com/bar/?stat=3Dgroovemails-events&amp;bin=3Dwpco=
+m_email_click&amp;redirect_to=3Dhttps%3A%2F%2Fautomattic.com%2F&amp;sr=3D1&=
+amp;signature=3D4cbe7c62036276f8afb1e59bf529dd0a&amp;user=3D156921155&amp;_=
+e=3DeyJlcnJvciI6bnVsbCwiYmxvZ19pZCI6MjE0Nzg1NjUxLCJibG9nX2xhbmciOiJlbiIsInN=
+pdGVfaWRfbGFiZWwiOiJqZXRwYWNrIiwiX3VpIjoxNTY5MjExNTUsImxvY2FsZSI6ImVuIiwiY3=
+VycmVuY3kiOiJVU0QiLCJjb3VudHJ5X2NvZGVfc2lnbnVwIjoiUk8iLCJzaWdudXBfZmxvd19uY=
+W1lIjoibWFpbiIsImVtYWlsX2RvbWFpbiI6Im1paGFpYWRhbS5jb20iLCJ1c2VyX2VtYWlsIjoi=
+Y29udGFjdEBtaWhhaWFkYW0uY29tIiwiZGF0ZV9zZW50IjoiMjAyNC0xMS0xNiIsImVtYWlsX2l=
+kIjoiMjU5NTkwOGMzMjRkZWJlYjk2YjY0NDk0NDkwYmM2YjQiLCJlbWFpbF9uYW1lIjoiamV0bW=
+9uLXNpdGUtZG93biIsInRlbXBsYXRlIjoiamV0bW9uLXNpdGUtZG93biIsImFuY2hvcl90ZXh0I=
+joiNjAgMjl0aCBTdC4gIzM0MywgU2FuIEZyYW5jaXNjbywgQ0EgOTQxMTAsIFVTQSIsIl9kciI6=
+bnVsbCwiX2RsIjoiXC9qZXRtb25cLz9kYXRhPXtcXFwiYmxvZ19pZFxcXCI6MjE0Nzg1NjUxLFx=
+cXCJtb25pdG9yX3VybFxcXCI6XFxcImh0dHBzOlwvXC9taWhhaWFkYW0uY29tXFxcIixcXFwic3=
+RhdHVzX2lkXFxcIjowLFxcXCJsYXN0X2NoZWNrXFxcIjpcXFwiMjAyNC0xMS0xNlQxMTo0Njo1M=
+S43NzNaXFxcIixcXFwibGFzdF9zdGF0dXNfY2hhbmdlXFxcIjpcXFwiMjAyNC0xMS0wNVQxMTo1=
+MDoyOC4wMDBaXFxcIixcXFwiY2hlY2tzXFxcIjpbe1xcXCJ0eXBlXFxcIjoxLFxcXCJob3N0XFx=
+cIjpcXFwiamV0bW9uLUMwMy1SMDEtMDguZGZ3LndvcmRwcmVzcy5jb21cXFwiLFxcXCJzdGF0dX=
+NcXFwiOjAsXFxcInJ0dFxcXCI6Mjc5LFxcXCJjb2RlXFxcIjo0MDQsXFxcImVycm9yX2NvZGVcX=
+FwiOjB9LHtcXFwidHlwZVxcXCI6MSxcXFwiaG9zdFxcXCI6XFxcImpldG1vbi1DMDMtUjAxLTA4=
+LmRmdy53b3JkcHJlc3MuY29tXFxcIixcXFwic3RhdHVzXFxcIjowLFxcXCJydHRcXFwiOjg2Nzk=
+sXFxcImNvZGVcXFwiOjQwNCxcXFwiZXJyb3JfY29kZVxcXCI6MH0se1xcXCJ0eXBlXFxcIjoyLF=
+xcXCJob3N0XFxcIjpcXFwiNTQuMjE3LjIwMS4yNDNcXFwiLFxcXCJzdGF0dXNcXFwiOjAsXFxcI=
+nJ0dFxcXCI6NTEyLFxcXCJjb2RlXFxcIjo0MDR9LHtcXFwidHlwZVxcXCI6MixcXFwiaG9zdFxc=
+XCI6XFxcIjU0LjIzMi4xMTYuNFxcXCIsXFxcInN0YXR1c1xcXCI6MCxcXFwicnR0XFxcIjo3MjA=
+sXFxcImNvZGVcXFwiOjQwNH0se1xcXCJ0eXBlXFxcIjoyLFxcXCJob3N0XFxcIjpcXFwiMTIyLj=
+I0OC4yNDUuMjQ0XFxcIixcXFwic3RhdHVzXFxcIjowLFxcXCJydHRcXFwiOjMwMTY1LFxcXCJjb=
+2RlXFxcIjowfV0sXFxcInRva2VuXFxcIjpcXFwiYjY5ZWI0Y2E0YjRhZTE5ZThlNGYyZTMxMjlk=
+YTdmZDNcXFwifSIsIl91dCI6IndwY29tOnVzZXJfaWQiLCJfdWwiOiJtaWhhaXdwcmVzcyIsIl9=
+lbiI6IndwY29tX2VtYWlsX2NsaWNrIiwiX3RzIjoxNzMxNzU3NjQ4OTE4LCJicm93c2VyX3R5cG=
+UiOiJwaHAtYWdlbnQiLCJfYXVhIjoid3Bjb20tdHJhY2tzLWNsaWVudC12MC4zIiwiYmxvZ190e=
+iI6MCwidXNlcl9sYW5nIjoiZW4ifQ=3D&amp;_z=3Dz" class=3D"ios-auto-link jetpack=
+-footer-link" style=3D"color: #444444; font-size: 15px; line-height: 18px;"=
+>60 29th St. #343, San Francisco, CA 94110, USA</a>=0A=09=09</p>=0A=0A=09</=
+td>=0A</tr>=0A=0A</tbody>=0A</table>=0A</td>=0A</tr>=0A</tbody>=0A</table>=
+=0A=0A=09<img src=3D"https://pixel.wp.com/t.gif?_ui=3D156921155&amp;locale=
+=3Den&amp;currency=3DUSD&amp;country_code_signup=3DRO&amp;signup_flow_name=
+=3Dmain&amp;email_domain=3Dmihaiadam.com&amp;blog_id=3D214785651&amp;user_e=
+mail=3Dcontact%40mihaiadam.com&amp;date_sent=3D2024-11-16&amp;email_id=3D25=
+95908c324debeb96b64494490bc6b4&amp;email_name=3Djetmon-site-down&amp;templa=
+te=3Djetmon-site-down&amp;_en=3Dwpcom_email_open&amp;browser_type=3Dphp-age=
+nt&amp;_aua=3Dwpcom-tracks-client-v0.3&amp;_ul=3Dmihaiwpress&amp;_ut=3Dwpco=
+m%3Auser_id&amp;blog_tz=3D0&amp;blog_lang=3D0&amp;user_lang=3Den&amp;_ts=3D=
+1731757648102" style=3D"border: 0 none; height: auto; line-height: 100%; ou=
+tline: none; text-decoration: none;">=0A=0A</body>=0A</html><html>=0A<div s=
+tyle=3D"direction: ltr; max-height: 0px; overflow: hidden;">=0AJetpackPlan<=
+/div>=0A</html>=0A
+
+--b1=_E6f1zFEGzKuP788AWzAEWg0I87vBA8wGxVOyew3Bmo--
+

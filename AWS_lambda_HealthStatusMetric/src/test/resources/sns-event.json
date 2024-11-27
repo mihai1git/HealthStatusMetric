@@ -1,0 +1,22 @@
+{
+    "Records": [
+        {
+            "EventSource": "aws:sns",
+            "EventVersion": "1.0",
+            "EventSubscriptionArn": "arn:aws:sns:us-west-2:255864408802:FilteredMails:0a1fe2fc-f093-4495-b8e4-7ac317b1054e",
+            "Sns": {
+                "Type": "Notification",
+                "MessageId": "7bc3e988-2856-53ee-9c52-b63e7961c288",
+                "TopicArn": "arn:aws:sns:us-west-2:255864408802:FilteredMails",
+                "Subject": null,
+                "Message": "{\"version\":\"1.0\",\"timestamp\":\"2024-11-19T08:40:23.604Z\",\"requestContext\":{\"requestId\":\"e2147f8d-5cd7-4b51-a1eb-d42ace673ea8\",\"functionArn\":\"arn:aws:lambda:us-west-2:255864408802:function:MailFilter:$LATEST\",\"condition\":\"Success\",\"approximateInvokeCount\":1},\"requestPayload\":{\"Records\":[{\"EventSource\":\"aws:sns\",\"EventVersion\":\"1.0\",\"EventSubscriptionArn\":\"arn:aws:sns:us-west-2:255864408802:S3IncomigMails:e523d4c0-4653-45d0-831b-9025d52bb82c\",\"Sns\":{\"Type\":\"Notification\",\"MessageId\":\"e3970a7e-ad0f-52f4-a7fb-55c8fc38a713\",\"TopicArn\":\"arn:aws:sns:us-west-2:255864408802:S3IncomigMails\",\"Subject\":null,\"Message\":\"{\\n  \\\"Records\\\": [\\n    {\\n      \\\"eventVersion\\\": \\\"2.0\\\",\\n      \\\"eventSource\\\": \\\"aws:s3\\\",\\n      \\\"awsRegion\\\": \\\"us-east-1\\\",\\n      \\\"eventTime\\\": \\\"2024-01-01T00:00:00\\\",\\n      \\\"eventName\\\": \\\"ObjectCreated:Put\\\",\\n      \\\"userIdentity\\\": {\\n        \\\"principalId\\\": \\\"EXAMPLE\\\"\\n      },\\n      \\\"requestParameters\\\": {\\n        \\\"sourceIPAddress\\\": \\\"127.0.0.1\\\"\\n      },\\n      \\\"responseElements\\\": {\\n        \\\"x-amz-request-id\\\": \\\"C3D13FE58DE4C810\\\",\\n        \\\"x-amz-id-2\\\": \\\"FMyUVURIY8/IgAtTv8xRjskZQpcIZ9KG4V5Wp6S7S/JRWeUWerMUE5JgHvANOjpD\\\"\\n      },\\n      \\\"s3\\\": {\\n        \\\"s3SchemaVersion\\\": \\\"1.0\\\",\\n        \\\"configurationId\\\": \\\"testConfigRule\\\",\\n        \\\"bucket\\\": {\\n          \\\"name\\\": \\\"ses-received-mail-mihaiadam\\\",\\n          \\\"ownerIdentity\\\": {\\n            \\\"principalId\\\": \\\"EXAMPLE\\\"\\n          },\\n          \\\"arn\\\": \\\"arn:aws:s3:::ses-received-mail-mihaiadam\\\"\\n        },\\n        \\\"object\\\": {\\n          \\\"key\\\": \\\"i5i1anciju027tqs8sut6nqtt04qc76sh2l3i1o1\\\",\\n          \\\"size\\\": 1024,\\n          \\\"eTag\\\": \\\"d41d8cd98f00b204e9800998ecf8427e\\\"\\n        }\\n      }\\n    }\\n  ]\\n}\",\"Timestamp\":\"2024-11-19T08:40:23.114Z\",\"SignatureVersion\":\"1\",\"Signature\":\"FomQNhByekb1HxJynnPgyZqifH1EcTQO0qEqA0erdAxePw/Ksz8vtx2e5v8DgKr9mfu5ruPAtoqFZKKJQCfK7Dm5HkJKLrbIhnLIMksOUctw2nvJa8dbgUCTOyTALODrXFKi+S5fu/AXDokgOiuAFgp/TdoVtpCtEpMo41aEd8BddkQqHwZhygvNbH+3AlBIBkc35hotHo+R4sTsc70KrvaOFjJoO5qe4f/2bl4gH6bYe5vtOPDqPX/71cGGhB9/fTL3DGlAbp/wKu8BKuCUQdD2CmJdbHTFeyh05AOaWhm/Co8zzlUuOlCupENqwwJFWw9NlC+mWb0AXFOIRfItIg==\",\"SigningCertUrl\":\"https://sns.us-west-2.amazonaws.com/SimpleNotificationService-9c6465fa7f48f5cacd23014631ec1136.pem\",\"UnsubscribeUrl\":\"https://sns.us-west-2.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-west-2:255864408802:S3IncomigMails:e523d4c0-4653-45d0-831b-9025d52bb82c\",\"MessageAttributes\":{}}}]},\"responseContext\":{\"statusCode\":200,\"executedVersion\":\"$LATEST\"},\"responsePayload\":{\"s3Bucket\":\"ses-received-mail-mihaiadam\",\"s3Key\":\"0bv4pm8l96o4tsro68h7freolp7u0sa1r3fkosg1\",\"filter\":{\"field\":\"FROM\",\"value\":\"@jetpack\",\"modifier\":\"CONTAINS\"}}}",
+                "Timestamp": "2024-11-19T08:40:23.657Z",
+                "SignatureVersion": "1",
+                "Signature": "rG483OkTNWRbn65ucl93mG74LNkJnCBuvEaAZPY5/Xl3sWvGsWrRG/F7lYV9WUBaOw7BQ6gUEeKxElXx0MPuRaAEJ13eBPhezS/XBRqfJx8PWDBfEtAWlZmNn28juJ0UfoIrjnYst4IcswB1Q7RPfntaI2n9D4pltNMNZwFr4TlnOEvTHBsG6L4nLR4qs4BFPFIpkZnTtT8PI4osdMsyWitd408SggjZHV9OSuYl9KLoTTytenZiqsyMigalDYqId9vpqZMm04ANyZymkv/MWSbXv22h0uGLBRV42tTMiLUAsAWDDGyWzvj2zmqK90VTdKgcYBauF+MX1hBWWShVFQ==",
+                "SigningCertUrl": "https://sns.us-west-2.amazonaws.com/SimpleNotificationService-9c6465fa7f48f5cacd23014631ec1136.pem",
+                "UnsubscribeUrl": "https://sns.us-west-2.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-west-2:255864408802:FilteredMails:0a1fe2fc-f093-4495-b8e4-7ac317b1054e",
+                "MessageAttributes": {}
+            }
+        }
+    ]
+}

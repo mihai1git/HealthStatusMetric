@@ -1,0 +1,339 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.amazonaws.lambda.mihai</groupId>
+  <artifactId>healthmetric</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+
+  <properties>
+      <maven.compiler.source>11</maven.compiler.source>
+      <maven.compiler.target>11</maven.compiler.target>
+      <log4j.version>2.17.1</log4j.version>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      
+      <aws.accessKey>${env.ACCESS_KEY}</aws.accessKey>
+      <aws.secretKey>${env.SECRET_KEY}</aws.secretKey>
+      <project.build.directory></project.build.directory>
+      <project.build.finalName>healthmetriclambda</project.build.finalName>
+      <project.version>1.0</project.version>
+      
+  </properties>
+
+  <build>
+  <pluginManagement>
+    <plugins>
+    
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
+          <useIncrementalCompilation>false</useIncrementalCompilation>
+        </configuration>
+      </plugin>
+    
+      <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>3.2.4</version>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                    <configuration>
+                    	<createDependencyReducedPom>false</createDependencyReducedPom>
+	                    <filters>
+					      <filter>
+					        <artifact>:</artifact>
+					        <excludes>
+					          <exclude>**/Log4j2Plugins.dat</exclude>
+					        </excludes>
+					      </filter>
+					    </filters>
+                    </configuration>
+
+                </execution>
+            </executions>
+        </plugin>
+        
+        <plugin>
+		    <groupId>com.github.seanroy</groupId>
+		    <artifactId>lambda-maven-plugin</artifactId>
+		    <version>2.3.5</version>
+		    <configuration>
+		        <accessKey>${aws.accessKey}</accessKey>
+		        <secretKey>${aws.secretKey}</secretKey>
+		        <region>us-west-2</region>
+		        <functionCode>${project.build.directory}/${project.build.finalName}.jar</functionCode>
+		        <version>${project.version}</version>
+		        <lambdaRoleArn>arn:aws:iam::${env.ACCOUNT_ID}:role/service-role/SiteHealthStatusMetric-role-iouvkssl</lambdaRoleArn>
+		        <s3Bucket>lambda-code-mihaiadam</s3Bucket>
+		        <keyPrefix>eclipse</keyPrefix>
+		        <runtime>java11</runtime>
+		        <publish>true</publish>
+		        <forceUpdate>true</forceUpdate>
+		        <lambdaFunctionsJSON>
+		            [
+		            {
+		            "functionName": "SiteHealthStatusMetric",
+		            "description": "Add metrics to CloudWatch Metric for Site mihaiadam.com",
+		            "handler": "com.amazonaws.lambda.mihai.healthmetric.handler.LambdaFunctionHandler",
+		            "timeout": 90,
+		            "memorySize": 1024,
+		            "keepAlive": 10,
+		            "triggers": [
+		            	{
+                          "integration": "SNS",
+                          "SNSTopic": "FilteredMails"	
+                        }
+                    ]
+		            }
+		            ]
+		        </lambdaFunctionsJSON>
+		    </configuration>
+		</plugin>
+		
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-assembly-plugin</artifactId>
+	        <version>3.7.0</version>
+	        <configuration>
+	          <filters>
+	            <filter>src/assembly/filter.properties</filter>
+	          </filters>
+	          <descriptors>
+	            <descriptor>src/assembly/distribution.xml</descriptor>
+	          </descriptors>
+	        </configuration>
+
+	      </plugin>
+	      
+	      <plugin>
+		    <groupId>org.codehaus.mojo</groupId>
+		    <artifactId>aspectj-maven-plugin</artifactId>
+		    <version>1.15.0</version>
+	        <executions>
+				<execution>
+					<phase>process-sources</phase>
+					<goals>
+						<goal>compile</goal>
+						<goal>test-compile</goal><!-- test classes are generated only if eclipse build does not skip tests -->
+					</goals>
+				</execution>
+		    </executions>
+		    <configuration>
+		        <complianceLevel>11</complianceLevel>
+	            <source>${maven.compiler.source}</source>
+	            <target>${maven.compiler.target}</target>
+		        <showWeaveInfo>true</showWeaveInfo>
+		        <verbose>true</verbose>
+		        <Xlint>ignore</Xlint>
+		        <encoding>UTF-8</encoding>
+		    </configuration>
+		</plugin>
+		
+		<!-- aspects are (re-)applied when coding and testing in Eclipse (using m2e) -->
+		<plugin>
+            <groupId>org.eclipse.m2e</groupId>
+            <artifactId>lifecycle-mapping</artifactId>
+            <version>1.0.0</version>
+            <configuration>
+                <lifecycleMappingMetadata>
+                    <pluginExecutions>
+					    <pluginExecution>
+					      <pluginExecutionFilter>
+							    <groupId>org.codehaus.mojo</groupId>
+							    <artifactId>aspectj-maven-plugin</artifactId>
+							    	<versionRange>[1.0.0,)</versionRange>
+					 				<goals>
+										<goal>test-compile</goal>
+									</goals>
+					
+					      </pluginExecutionFilter>
+					      <action>
+					        <execute>
+					            <!-- runOnIncremental: tells m2e to run the plugin-execution on each auto-build (true) or only on full-build (false). -->
+					            <runOnIncremental>true</runOnIncremental>
+					        </execute>
+					      </action>
+					    </pluginExecution>
+                    </pluginExecutions>                         
+                </lifecycleMappingMetadata>
+            </configuration>
+        </plugin>
+        
+        <plugin>
+             <groupId>dev.aspectj</groupId>
+             <artifactId>aspectj-maven-plugin</artifactId>
+             <version>1.13.1</version>
+             <configuration>
+		         <source>${maven.compiler.source}</source>
+		         <target>${maven.compiler.target}</target>
+                 <complianceLevel>11</complianceLevel> <!-- or higher -->
+                 <aspectLibraries>
+                     <aspectLibrary>
+                         <groupId>software.amazon.lambda</groupId>
+                         <artifactId>powertools-logging</artifactId>
+                     </aspectLibrary>
+                 </aspectLibraries>
+             </configuration>
+             <executions>
+                 <execution>
+                     <goals>
+                         <goal>compile</goal>
+                     </goals>
+                 </execution>
+             </executions>
+        </plugin>
+    </plugins>
+    </pluginManagement>
+    
+    <plugins>
+ 		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+	      	<artifactId>maven-assembly-plugin</artifactId>
+	    </plugin>
+	    <plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>aspectj-maven-plugin</artifactId>
+		</plugin>
+		<plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-compiler-plugin</artifactId>
+	    </plugin>
+	    <plugin>
+	    	<groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-shade-plugin</artifactId>
+	    </plugin>
+        <plugin>
+		    <groupId>com.github.seanroy</groupId>
+		    <artifactId>lambda-maven-plugin</artifactId>
+		</plugin>
+		<plugin>
+            <groupId>org.eclipse.m2e</groupId>
+            <artifactId>lifecycle-mapping</artifactId>
+        </plugin>
+        <plugin>
+         	<groupId>dev.aspectj</groupId>
+            <artifactId>aspectj-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
+
+  </build>
+  
+    <dependencyManagement>
+	    <dependencies>
+	      <dependency>
+              <groupId>software.amazon.awssdk</groupId>
+              <artifactId>bom</artifactId>
+              <version>2.29.9</version><!-- JAVA 2 !!!!  Nov 09, 2024 -->
+              <type>pom</type>
+              <scope>import</scope>
+          </dependency>
+	    </dependencies>
+	  </dependencyManagement>
+
+  <dependencies>
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+		<dependency>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter-engine</artifactId>
+		    <version>5.10.3</version>
+		    <scope>test</scope>
+		</dependency>
+
+	    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+	<dependency>
+	    <groupId>org.mockito</groupId>
+	    <artifactId>mockito-core</artifactId>
+	    <version>5.12.0</version>
+	    <scope>test</scope>
+	</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter -->
+	<dependency>
+	    <groupId>org.mockito</groupId>
+	    <artifactId>mockito-junit-jupiter</artifactId>
+	    <version>5.12.0</version>
+	    <scope>test</scope>
+	</dependency>
+		
+	<!-- https://mvnrepository.com/artifact/software.amazon.awssdk/lambda -->
+	<dependency>
+	    <groupId>software.amazon.awssdk</groupId>
+	    <artifactId>lambda</artifactId>
+	    <version>2.29.9</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-lambda-java-events -->
+	<dependency>
+	    <groupId>com.amazonaws</groupId>
+	    <artifactId>aws-lambda-java-events</artifactId>
+	    <version>3.14.0</version>
+	</dependency>
+	
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-core</artifactId>
+	    <version>2.20.0</version>
+	</dependency>
+		
+	<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
+	<dependency>
+	    <groupId>org.aspectj</groupId>
+	    <artifactId>aspectjrt</artifactId>
+	    <version>1.9.22.1</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+	<dependency>
+	    <groupId>org.aspectj</groupId>
+	    <artifactId>aspectjweaver</artifactId>
+	    <version>1.9.22.1</version>
+	</dependency>
+
+    <dependency>
+        <groupId>software.amazon.lambda</groupId>
+        <artifactId>powertools-logging</artifactId>
+        <version>1.18.0</version>
+    </dependency>
+    
+	<!-- https://mvnrepository.com/artifact/software.amazon.awssdk/s3 -->
+	<dependency>
+	    <groupId>software.amazon.awssdk</groupId>
+	    <artifactId>s3</artifactId>
+	    <version>2.29.9</version>
+	</dependency>
+
+
+    <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+	<dependency>
+	    <groupId>javax.mail</groupId>
+	    <artifactId>mail</artifactId>
+	    <version>1.4.7</version>
+	</dependency>
+		
+	    <!-- https://mvnrepository.com/artifact/software.amazon.awssdk/cloudwatch -->
+	<dependency>
+	    <groupId>software.amazon.awssdk</groupId>
+	    <artifactId>cloudwatch</artifactId>
+	    <version>2.29.9</version>
+	</dependency>
+	
+				<!-- https://mvnrepository.com/artifact/com.amazonaws/aws-lambda-java-serialization -->
+	<dependency>
+	    <groupId>com.amazonaws</groupId>
+	    <artifactId>aws-lambda-java-serialization</artifactId>
+	    <version>1.1.5</version>
+	</dependency>  
+	
+
+  </dependencies>
+
+</project>
