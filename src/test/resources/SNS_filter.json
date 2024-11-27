@@ -1,0 +1,16 @@
+{
+"responsePayload": 
+	{
+	  "filter": {
+	    "field": [
+	      "FROM"
+	    ],
+	    "value": [
+	      "@jetpack.com"
+	    ],
+	    "modifier": [
+	      "CONTAINS"
+	    ]
+	  }
+	}
+}

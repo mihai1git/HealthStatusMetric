@@ -1,0 +1,696 @@
+Return-Path: <bounce@emails.telegraph.co.uk>
+Received: from r96.emails.telegraph.co.uk (r96.emails.telegraph.co.uk [63.140.41.96])
+ by inbound-smtp.us-west-2.amazonaws.com with SMTP id 0bv4pm8l96o4tsro68h7freolp7u0sa1r3fkosg1
+ for contact@mihaiadam.com;
+ Tue, 12 Nov 2024 06:07:01 +0000 (UTC)
+X-SES-Spam-Verdict: PASS
+X-SES-Virus-Verdict: PASS
+Received-SPF: pass (spfCheck: domain of emails.telegraph.co.uk designates 63.140.41.96 as permitted sender) client-ip=63.140.41.96; envelope-from=bounce@emails.telegraph.co.uk; helo=r96.emails.telegraph.co.uk;
+Authentication-Results: amazonses.com;
+ spf=pass (spfCheck: domain of emails.telegraph.co.uk designates 63.140.41.96 as permitted sender) client-ip=63.140.41.96; envelope-from=bounce@emails.telegraph.co.uk; helo=r96.emails.telegraph.co.uk;
+ dkim=pass header.i=@emails.telegraph.co.uk;
+ dmarc=pass header.from=emails.telegraph.co.uk;
+X-SES-RECEIPT: AEFBQUFBQUFBQUFITU5ML2VodEJMRFdnQy9SZFZJNlhySmpRRTJGNEpiV08yNlphUldycFNoNVRGb2IvOEc4Tnh2LzlRalNaaCtCa1AvY01YNjQwM1JoUWNwTWlGNjhoUHI0TUN1RG9ZTnRVTVVEQ1lZSlEyUmJtakxqZTlNUG1icG1icVdTbWlxb1FNVHJqYURGUUN0cnZ2RFpOT05KRXlYakYrMVo3eE92S3B0OFh5VGVjc1F4Zll1LzBPVTNTTW1mT3hSdWFydFZpQSs1c0RQd29sbjc4ZGU5WWw1S0hudTJjSmlPMEhQSGQ1OUdGeUxhaDdEUDhUMmkrc0RmZHJ5NVMvdktQK1RzRGx1YkxGUjhMZllqUS9BeXZ0S2Zpb25yV1BISGJUVjBBbHF1ZUdNSnQ4cHc9PQ==
+X-SES-DKIM-SIGNATURE: a=rsa-sha256; q=dns/txt; b=r1FyA4ilX80V6C3tXet8I56OZWCnzrEpzaF/GteWdJHZVIctvV/Aqs9Smzv+JhGZMbLrRm0hYmSAMtq7ryf9UPd8DNBgg/MvJip0MMqEryGPBf+pwbyh+12k8VhGT31b9F55wxzgiP9XSABiH6fMc2S3E+bPFapDeewAhkfPftg=; c=relaxed/simple; s=7v7vs6w47njt4pimodk5mmttbegzsi6n; d=amazonses.com; t=1731391622; v=1; bh=5RALB/8Mrxs0Zk9IpGts8UTRSN1TpUk0wBbaI+7lNFQ=; h=From:To:Cc:Bcc:Subject:Date:Message-ID:MIME-Version:Content-Type:X-SES-RECEIPT;
+Return-Path: <bounce@emails.telegraph.co.uk>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=emails.telegraph.co.uk; s=tmg; t=1731391617;
+	bh=qnVKxorZS0PFvchQIw+LYBJwvK8lfTSt1PLinAXrzZw=;
+	h=From:Subject:Date:To:MIME-Version:Message-ID:List-Unsubscribe:
+	 Content-Type;
+	b=e3oV/0oTHZFRNJyhogkYlfsP5qPom6lW7cmxf0JqbczWPV840urN/q0umm68Th9Xt
+	 a/0WxAj114eQilQ4kdDB63ehr8I3sC74OvFKGtKA2c0LGkoo/gnGXNfz2FS5kslWrG
+	 MAPKPBzQNoPdWZnRGS1swlVoAo5eF66BqQOt1WtIWyNiYelMkEbavWI7IoL9zU9ece
+	 pS3cClmQrj2rNDiw1Jd4ZGQVfQwUgdQx42+c0+EV1c6+mFOqABbHY9/SWZMZgJZipR
+	 ZdZqizviEaFK5KPXjBrVWZ/gSxOydh0emUXfhD9x7QsXpBQzVj7YNZVYSAYWss8uuc
+	 crleojbNMH5yQ==
+X-MSFBL: F/hgblPIeCLFU5sMb32xziIzfAqnwoKw3vtEuqG+k1E=|eyJnIjoicHJvZC5tYXJ
+	rZXRpbmdfOGIwMzEzNGQtN2UyNi00YzI5LTk5YmQtOTYwZDEyOTZlMjRmIiwicmN
+	wdF9tZXRhIjp7ICJpbiI6ICJ0bWdfbWlkX3Byb2Q1IiwgInIiOiAiY29udGFjdEB
+	taWhhaWFkYW0uY29tIiwgIm0iOiAiMTVjYjdhMGUtMmRkMS00ZWU4LWEwZDktZWE
+	zYThlOGFhOGUwIiwgImQiOiAiMjYwODk5MzAiLCAiaSI6ICIyQzczMzZDNzUzQzY
+	3NkJBMEE0OTBENEJAQWRvYmVPcmciIH0sInIiOiJjb250YWN0QG1paGFpYWRhbS5
+	jb20iLCJiIjoidG1nXzYzLjE0MC40MS45Nl9wcm9kLm1hcmtldGluZ184YjAzMTM
+	0ZC03ZTI2LTRjMjktOTliZC05NjBkMTI5NmUyNGYifQ==
+Received: from [54.220.82.186] ([54.220.82.186:39751] helo=r96.emails.telegraph.co.uk)
+	by irl1-prod1-mta-i-075a3775f71944a18 (envelope-from <bounce@emails.telegraph.co.uk>)
+	(ecelerity 4.4.1.20033 r(msys-ecelerity:tags/4.4.1.0^0)) with ESMTP
+	id C4/E6-03037-180F2376; Tue, 12 Nov 2024 06:06:57 +0000
+From: "The Telegraph" <telegraph@emails.telegraph.co.uk>
+Subject: Want to be rich? Sign up for our newsletter today
+Date: Tue, 12 Nov 2024 06:06:54 GMT
+To: <contact@mihaiadam.com>
+Reply-To: "Do not reply" <telegraph@emails.telegraph.co.uk>
+MIME-Version: 1.0
+X-mailer: nlserver, Build 8.5.2
+Message-ID: <NMFFDA15cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0018E19CAtmg_mid_prod5@emails.telegraph.co.uk>
+List-Unsubscribe: <https://m.emails.telegraph.co.uk/webApp/mktUnsubscribe?id=%40PfzrCEbtEGdtkoztlpH6OAfmg0RjSj5beGKammZ4C9UFZakjsWxhyW0suCwP1Ex9&p1=New_BTM_Sol>, <mailto: bounce@emails.telegraph.co.uk?subject=unsubscribe%3CNMFFDA15cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0018E19CAtmg_mid_prod5@emails.telegraph.co.uk%3E>
+Content-Type: multipart/alternative;
+	charset="windows-1252";
+	boundary="----=_NextPart_298_072116BF.072116BF"
+MIH-mail-agent: aws_ses
+
+This is a multi-part message in MIME format.
+
+------=_NextPart_298_072116BF.072116BF
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: 8bit
+
+Get weekly tips on building your wealth, plus expert guides,
+tools and calculators
+
+‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌
+‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌
+‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌
+‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌
+‌ ‌ ‌ ‌
+
+[View in browser] http://m5.emails.telegraph.co.uk/nl/jsp/m.jsp?c=%40OVQzNay3ZSHyjNzC4RK8d%2BVgZtFamkU%2BhyHHZCZJjiWbEaM264HXMPx%2BmvbmO6DJfAw0dHAvEB%2B0YNqJkAbhiA%3D%3D
+[Unsubscribe] http://t3.emails.telegraph.co.uk/r/?id=t15cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199dc&e=V1QubWNfaWQ9ZV9ETTQ1MjE1MCZXVC50c3JjPWVtYWlsJmV0eXBlPUFjcV9Oc3VfU3BlY19NaWxsaW9uYWlyZSZ1dG1zb3VyY2U9ZW1haWwmdXRtX21lZGl1bT1BY3FfTnN1X1NwZWNfTWlsbGlvbmFpcmUyMDI0MTExMiZ1dG1fY2FtcGFpZ249RE00NTIxNTAmcDE9JTQwUGZ6ckNFYnRFR2R0a296dGxwSDZPQWZtZzBSalNqNWJlR0thbW1aNEM5VUZaYWtqc1d4aHlXMHN1Q3dQMUV4OSZwMj1OZXdfQlRNX1NvbA&s=090zXDay4i1VMsWofmB7OujdEdTDr-41r_MBa37L4FI 
+[
+[Newsletter image header]
+] http://t3.emails.telegraph.co.uk/r/?id=t15cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199dd&e=V1QubWNfaWQ9ZV9ETTQ1MjE1MCZXVC50c3JjPWVtYWlsJmV0eXBlPUFjcV9Oc3VfU3BlY19NaWxsaW9uYWlyZSZ1dG1zb3VyY2U9ZW1haWwmdXRtX21lZGl1bT1BY3FfTnN1X1NwZWNfTWlsbGlvbmFpcmUyMDI0MTExMiZ1dG1fY2FtcGFpZ249RE00NTIxNTA&s=VlvY2J3fzk0n-TTUgBlCLmyGtNz0nEEKObjzbr_sco4 
+[
+[Newsletter image header]
+] http://t3.emails.telegraph.co.uk/r/?id=t15cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199de&e=V1QubWNfaWQ9ZV9ETTQ1MjE1MCZXVC50c3JjPWVtYWlsJmV0eXBlPUFjcV9Oc3VfU3BlY19NaWxsaW9uYWlyZSZ1dG1zb3VyY2U9ZW1haWwmdXRtX21lZGl1bT1BY3FfTnN1X1NwZWNfTWlsbGlvbmFpcmUyMDI0MTExMiZ1dG1fY2FtcGFpZ249RE00NTIxNTA&s=CP74f8uajtgFAKF3X4lmmzY-yO9q3XyVxPUsYe95ctg 
+Dear Reader,
+
+Do you want to be rich?
+
+[Sign up] http://t3.emails.telegraph.co.uk/r/?id=t15cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199df&e=V1QubWNfaWQ9ZV9ETTQ1MjE1MCZXVC50c3JjPWVtYWlsJmV0eXBlPUFjcV9Oc3VfU3BlY19NaWxsaW9uYWlyZSZ1dG1zb3VyY2U9ZW1haWwmdXRtX21lZGl1bT1BY3FfTnN1X1NwZWNfTWlsbGlvbmFpcmUyMDI0MTExMiZ1dG1fY2FtcGFpZ249RE00NTIxNTA&s=6-idRWxvphyl32MAqbp9WKgeCLQyYJ9j4zR9mZl5VGY  for our new, six-part weekly newsletter today.
+
+Get the knowledge and tools you need to build your wealth – and
+better understand your finances, courtesy of Telegraph Money’s
+experts.
+
+From investing in property to prioritising your pension, our
+advice will put you in good standing to reach that seven-figure
+sum.
+[
+[Sign up now]
+] http://t3.emails.telegraph.co.uk/r/?id=t15cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199e0&e=V1QubWNfaWQ9ZV9ETTQ1MjE1MCZXVC50c3JjPWVtYWlsJmV0eXBlPUFjcV9Oc3VfU3BlY19NaWxsaW9uYWlyZSZ1dG1zb3VyY2U9ZW1haWwmdXRtX21lZGl1bT1BY3FfTnN1X1NwZWNfTWlsbGlvbmFpcmUyMDI0MTExMiZ1dG1fY2FtcGFpZ249RE00NTIxNTA&s=vbBC1Wa5lO0to-6Ii2J719_lFewr94PQPrtz0UjZt3Y 
+[
+[Sign up now]
+] http://t3.emails.telegraph.co.uk/r/?id=t15cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199e1&e=V1QubWNfaWQ9ZV9ETTQ1MjE1MCZXVC50c3JjPWVtYWlsJmV0eXBlPUFjcV9Oc3VfU3BlY19NaWxsaW9uYWlyZSZ1dG1zb3VyY2U9ZW1haWwmdXRtX21lZGl1bT1BY3FfTnN1X1NwZWNfTWlsbGlvbmFpcmUyMDI0MTExMiZ1dG1fY2FtcGFpZ249RE00NTIxNTA&s=GvPHopjaMA90Nrjx8U4AC7zh7Os-V88G-ZzwVrcqupo 
+You have received this email because you are registered with The
+Telegraph. Please do not reply to this email.
+If you no longer wish to receive these messages, please [unsubscribe] http://t3.emails.telegraph.co.uk/r/?id=t15cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199e2&e=V1QubWNfaWQ9ZV9ETTQ1MjE1MCZXVC50c3JjPWVtYWlsJmV0eXBlPUFjcV9Oc3VfU3BlY19NaWxsaW9uYWlyZSZ1dG1zb3VyY2U9ZW1haWwmdXRtX21lZGl1bT1BY3FfTnN1X1NwZWNfTWlsbGlvbmFpcmUyMDI0MTExMiZ1dG1fY2FtcGFpZ249RE00NTIxNTAmcDE9JTQwUGZ6ckNFYnRFR2R0a296dGxwSDZPQWZtZzBSalNqNWJlR0thbW1aNEM5VUZaYWtqc1d4aHlXMHN1Q3dQMUV4OSZwMj1OZXdfQlRNX1NvbA&s=3jPFCfZpPENjjxwUzrFSi1cBf1kkCz_7dlWJ6f7l3ow .
+In accordance with the 2018 Data Protection Act, Telegraph Media Group Holdings Limited is committed to protecting your privacy. If you wish to know more please access our [privacy policy] http://t3.emails.telegraph.co.uk/r/?id=t15cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199e3&e=V1QubWNfaWQ9ZV9ETTQ1MjE1MCZXVC50c3JjPWVtYWlsJmV0eXBlPUFjcV9Oc3VfU3BlY19NaWxsaW9uYWlyZSZ1dG1zb3VyY2U9ZW1haWwmdXRtX21lZGl1bT1BY3FfTnN1X1NwZWNfTWlsbGlvbmFpcmUyMDI0MTExMiZ1dG1fY2FtcGFpZ249RE00NTIxNTA&s=_MlSF77mCWoo7Gec6GptWCs9sTFCLSmQk1MhB3M_o4E .
+This email is from Telegraph Media Group Holdings Limited - 111
+Buckingham Palace Road, London SW1W 0DT. Registered in England
+under No 14551860.
+
+[
+[Facebook]
+[Facebook]
+] http://t3.emails.telegraph.co.uk/r/?id=t15cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199e4&e=V1QubWNfaWQ9ZV9ETTQ1MjE1MCZXVC50c3JjPWVtYWlsJmV0eXBlPUFjcV9Oc3VfU3BlY19NaWxsaW9uYWlyZSZ1dG1zb3VyY2U9ZW1haWwmdXRtX21lZGl1bT1BY3FfTnN1X1NwZWNfTWlsbGlvbmFpcmUyMDI0MTExMiZ1dG1fY2FtcGFpZ249RE00NTIxNTA&s=Z_EPtJEPJBgLuEC2G-mgRe16JPhfMZzcKl6tCo1YKrY 
+
+[
+[Twitter]
+[Twitter]
+] http://t3.emails.telegraph.co.uk/r/?id=t15cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199e5 
+
+[
+[Youtube]
+[Youtube]
+] http://t3.emails.telegraph.co.uk/r/?id=t15cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199e6 
+
+[
+[Instagram]
+[Instagram]
+] http://t3.emails.telegraph.co.uk/r/?id=t15cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199e7 
+
+------=_NextPart_298_072116BF.072116BF
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" lang=3D"en">
+  <head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8"><meta charset=3D"utf-8">
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width,initial-scale=
+=3D1">
+    <meta name=3D"format-detection" content=3D"telephone=3Dno, date=3Dno, a=
+ddress=3Dno, email=3Dno, url=3Dno">
+    <meta name=3D"x-apple-disable-message-reformatting">
+    <title>Want to be rich=3F Sign up for our newsletter today</title>
+    <!--[if true]>
+    <noscript>
+      <xml>
+        <o:OfficeDocumentSettings>
+          <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+      </xml>
+    </noscript>
+    <![endif]-->
+    <style type=3D"text/css">
+      * {
+        -ms-text-size-adjust:100%;
+        -webkit-text-size-adjust:100%;
+        -webkit-font-smoothing:antialiased !important;
+      }
+      *[x-apple-data-detectors],
+      u + .body a,
+      #MessageViewBody a {
+        font-weight:inherit;
+        color:inherit;
+        text-decoration:none;
+      }
+      a {
+        text-decoration:none;
+      }
+    </style>
+    <style type=3D"text/css">
+      .column {
+        min-width:0 !important;
+      }
+      .dsk {
+        display:block !important;
+        max-height:none !important;
+        visibility:visible !important;
+      }
+      .mob {
+        display:none !important;
+        max-height:0 !important;
+        visibility:hidden !important;
+      }
+      .w120 {
+        width:120px !important;
+      }
+      .onb_head {
+        font-size:2em !important;
+      }
+      .onb_subhead {
+        font-size:1.5em !important;
+      }
+      .ph24 {
+        padding-right:24px !important;
+        padding-left:24px !important;
+      }
+      .ph32 {
+        padding-right:32px !important;
+        padding-left:32px !important;
+      }
+    </style>
+    <style type=3D"text/css">
+      @media screen and (max-width:460px) {
+        .column {
+          max-width:100% !important;
+        }
+        .width-90 {
+          width:90% !important;
+        }
+        .dsk {
+          display:none !important;
+          max-height:0 !important;
+          visibility:hidden !important;
+        }
+        .mob {
+          display:block !important;
+          max-height:none !important;
+          visibility:visible !important;          
+        }
+        .l-mob {
+          text-align: left !important;
+        }
+        .pt24 {
+          padding-top: 24px !important;
+          padding-left: 32px !important;
+          margin-bottom: 12px !important;
+        }
+        .w120 {
+          width:84px !important;
+        }
+        .hauto {
+          height:auto !important;
+        }
+        .onb_head {
+          font-size:1.5em !important;
+        }
+        .onb_subhead {
+          font-size:1em !important;
+        }
+        .txtc {
+          text-align:center !important;
+        }
+        .ph24 {
+          padding-right:16px !important;
+          padding-left:16px !important;
+        }
+        .pb16ep {
+          padding-bottom: 16px !important;
+        }
+        .ptb16 {
+          padding-top: 16px!important;
+          padding-bottom: 16px!important;
+        }
+        .plr16 {
+          padding-left: 16px !important;
+          padding-right: 16px !important;
+          padding-bottom: 16px !important;
+        }
+
+      }
+    </style>
+    <style type=3D"text/css"> 
+      :root {
+        color-scheme:light dark;
+        supported-color-schemes:light dark;
+      }
+      [data-ogsc] h2,
+      [data-ogsc] h2 > a,
+      [data-ogsc] h3,
+      [data-ogsc] h3 > a,
+      [data-ogsc] p,
+      [data-ogsc] p > a,
+      [data-ogsc] ol {
+        color:#fffffe !important;
+      }
+      [data-ogsb] hr {
+        background-color:#fffffe !important;
+      }
+      [data-ogsc] .slug {
+        color: #de0000 !important;
+      }
+      [data-ogsc] .b_w {
+        border:1px solid #fffffe !important;
+      }
+      [data-ogsc] .bt_w {
+        border-top:1px solid #fffffe !important;
+      }
+      [data-ogsc] .bl_w {
+        border-left:1px solid #fffffe !important;
+      }
+      [data-ogsc] .br_w {
+        border-right:1px solid #fffffe !important;
+      }
+      [data-ogsc] .bb_w {
+        border-bottom:1px solid #fffffe !important;
+      }
+      [data-ogsc] .container,
+      [data-ogsc] .offer,
+      [data-ogsc] .footer {
+        background-color:#000000 !important;
+      }
+      [data-ogsc] .btn {
+        border:1px solid #fffffe !important;
+        background-color:#000000 !important;
+        color:#fffffe !important; 
+      }
+      [data-ogsc] .dark {
+        display:block !important;
+        max-height:none !important;
+        visibility:visible !important;
+      }
+      [data-ogsc] .light {
+        display:none !important;
+        max-height:0 !important;
+        visibility:hidden !important;
+      }
+      @media (prefers-color-scheme:dark) {
+        h2,
+        h2 > a,
+        h3,
+        h3 > a,
+        p,
+        p > a,
+        ol {
+          color:#fffffe !important;
+        }
+        .black {
+          color:#000000 !important;
+        }
+        hr {
+          background-color:#fffffe !important;
+        }
+        .slug {
+          color: #de0000 !important;
+        }
+        .b_w {
+          border:1px solid #fffffe !important;
+        }
+        .bt_w {
+          border-top:1px solid #fffffe !important;
+        }
+        .bl_w {
+          border-left:1px solid #fffffe !important;
+        }
+        .br_w {
+          border-right:1px solid #fffffe !important;
+        }
+        .bb_w {
+          border-bottom:1px solid #fffffe !important;
+        }
+        .container,
+        .offer,
+        .footer {
+          background-color:#000000 !important;
+        }
+        .btn {
+          border:1px solid #fffffe !important;
+          background-color:#fffffe !important;
+          color:#000000 !important; 
+        }
+        .dark {
+          display:block !important;
+          max-height:none !important;
+          visibility:visible !important;
+        }
+        .light {
+          display:none !important;
+          max-height:0 !important;
+          visibility:hidden !important;
+        }
+      }
+    </style>
+       <style type=3D"text/css">
+        @media screen {
+             /* NEW FONTS */
+             @font-face {
+                font-family: 'Doric News Headline';
+                src: url('https://cf.eip.telegraph.co.uk/assets/_fonts/dori=
+c/DoricNewsUI-HedRegular-FULL.woff') format('woff');
+                mso-font-alt: 'Arial';
+            }
+            @font-face {
+                font-family: 'Doric News Headline Medium';
+                src: url('https://cf.eip.telegraph.co.uk/assets/_fonts/dori=
+c/DoricNewsUI-HedMedium-FULL.woff') format('woff');
+                mso-font-alt: 'Arial';
+            }
+            @font-face {
+                font-family: 'Doric News Headline Bold';
+                src: url('https://cf.eip.telegraph.co.uk/assets/_fonts/dori=
+c/DoricNewsUI-HedBold-FULL.woff') format('woff');
+                mso-font-alt: 'Arial';
+            }
+            @font-face {
+                font-family: 'Doric News Text';
+                src: url('https://cf.eip.telegraph.co.uk/assets/_fonts/dori=
+c/DoricNewsUI-UIRegular-FULL.woff') format('woff');
+                mso-font-alt: 'Arial';
+            }
+            @font-face {
+                font-family: 'Doric News Text Bold';
+                src: url('https://cf.eip.telegraph.co.uk/assets/_fonts/dori=
+c/DoricNewsUI-UIBold-FULL.woff') format('woff');
+                mso-font-alt: 'Arial';
+            }
+          }
+    </style>
+
+    
+    <!--[if true]>
+    <style type=3D"text/css">
+      table {
+        margin:0;
+        border-collapse:collapse;
+        border-spacing:0;
+      }
+      div, 
+      td {
+        padding:0;
+      }
+      div {
+        margin:0 !important;
+      }
+      .hr1 {
+=09=09=09=09height:0.75pt !important;
+=09=09=09}
+    </style>
+    <![endif]-->
+  <img height=3D'0' width=3D'0' alt=3D'' src=3D'http://t3.emails.telegraph.=
+co.uk/r/=3Fid=3Dh15cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,1'/></head>
+  <body class=3D"body" style=3D"margin:0; padding:0; background-color:#ffff=
+ff; word-spacing:normal;"><!--[if false]><!-->
+    <div style=3D"display:none; mso-hide:all;">
+Get weekly tips on building your wealth, plus expert guides, tools and calc=
+ulators
+</div>
+    <div style=3D"display:none; mso-hide:all;">
+      &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zw=
+nj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;=
+&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nb=
+sp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;=
+&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zw=
+nj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;=
+&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zw=
+nj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;=
+&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nb=
+sp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;=
+&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zw=
+nj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;=
+&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zw=
+nj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;=
+&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nb=
+sp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;=
+&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&nbsp;&zwnj;&nbsp;&zwnj;&nb=
+sp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;=
+&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zw=
+nj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;=
+&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nb=
+sp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;=
+&zwnj;&nbsp;
+    </div>
+    <!--<![endif]-->
+<div class=3D"container" role=3D"article" aria-roledescription=3D"email" ar=
+ia-label=3D"The Telegraph email" lang=3D"en" style=3D"font-size:medium; fon=
+t-size:max(16px, 1rem); background-color:#ffffff;"><!--[if true]>
+      <table width=3D"600" class=3D"container" bgcolor=3D"#ffffff" align=3D=
+"center" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" role=3D"presentat=
+ion" style=3D"width:600px;">
+        <tr>
+          <td width=3D"600" style=3D"width:600px;">
+          <![endif]-->
+<div class=3D"container" style=3D"max-width:600px; margin:0 auto; backgroun=
+d-color:#ffffff;"><!-- PREHEADER -->
+<table class=3D"container" width=3D"100%" cellspacing=3D"0" cellpadding=3D"=
+0" border=3D"0" role=3D"presentation" bgcolor=3D"#ffffff">
+<tr>
+<td width=3D"50%" style=3D"padding:16px 0 16px 16px; text-align:left;">
+<p style=3D"margin:0; font-family:Arial,Helvetica,sans-serif; font-size:0.7=
+5em; color:#959595; line-height:1.25em;">
+<a target=3D"_blank" style=3D"color:#959595; text-decoration:underline;" hr=
+ef=3D"http://m5.emails.telegraph.co.uk/nl/jsp/m.jsp=3Fc=3D%40OVQzNay3ZSHyjN=
+zC4RK8d%2BVgZtFamkU%2BhyHHZCZJjiWbEaM264HXMPx%2BmvbmO6DJWR40A3TmcaY%2FAtUTJ=
+iVBxw%3D%3D">View in browser</a>
+</p>
+</td>
+<td width=3D"50%" style=3D"padding:16px 16px 16px 0; text-align:right;">
+<p style=3D"margin:0; font-family:Arial,Helvetica,sans-serif; font-size:0.7=
+5em; color:#959595; line-height:1.25em;">
+<a _label=3D"Opt-out link" _type=3D"optout" target=3D"_blank" style=3D"colo=
+r:#959595; text-decoration:underline;" href=3D"http://t3.emails.telegraph.c=
+o.uk/r/=3Fid=3Dh15cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199cf&e=3DV1Qu=
+bWNfaWQ9ZV9ETTQ1MjE1MCZXVC50c3JjPWVtYWlsJmV0eXBlPUFjcV9Oc3VfU3BlY19NaWxsaW9=
+uYWlyZSZ1dG1zb3VyY2U9ZW1haWwmdXRtX21lZGl1bT1BY3FfTnN1X1NwZWNfTWlsbGlvbmFpcm=
+UyMDI0MTExMiZ1dG1fY2FtcGFpZ249RE00NTIxNTAmcDE9JTQwUGZ6ckNFYnRFR2R0a296dGxwS=
+DZPQWZtZzBSalNqNWJlR0thbW1aNEM5VUZaYWtqc1d4aHlXMHN1Q3dQMUV4OSZwMj1OZXdfQlRN=
+X1NvbA&s=3D4LL8fpBX9DQTlpq1Xmi1-SO-kWspll_-rA7FogBG64Y">Unsubscribe</a>
+</p>
+</td>
+</tr>
+</table><!-- PREHEADER --><!-- [H6] FULL WIDTH IMAGE -->
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" role=
+=3D"presentation">
+<tr>
+<td>
+<div class=3D"dsk" style=3D"display:none; max-height:0; visibility:hidden;"=
+>
+<a target=3D"_blank" href=3D"http://t3.emails.telegraph.co.uk/r/=3Fid=3Dh15=
+cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199d0&e=3DV1QubWNfaWQ9ZV9ETTQ1Mj=
+E1MCZXVC50c3JjPWVtYWlsJmV0eXBlPUFjcV9Oc3VfU3BlY19NaWxsaW9uYWlyZSZ1dG1zb3VyY=
+2U9ZW1haWwmdXRtX21lZGl1bT1BY3FfTnN1X1NwZWNfTWlsbGlvbmFpcmUyMDI0MTExMiZ1dG1f=
+Y2FtcGFpZ249RE00NTIxNTA&s=3DVfwA1U--5JMxN4r9f1g_1dfoNane7nLbI1mE11CmW90"><i=
+mg width=3D"600" style=3D"display:block; width:100%; height:auto;" src=3D"h=
+ttps://www.telegraph.co.uk/content/dam/eip/particles/gen/2024/11/01/0f7ed18=
+d-aeca-49e5-bb96-96494ea913d0.png=3Fimwidth=3D960" alt=3D"Newsletter image =
+header">
+</a>
+</div><!--[if false]><!-->
+<div class=3D"mob" style=3D"mso-hide:all;">
+<a target=3D"_blank" href=3D"http://t3.emails.telegraph.co.uk/r/=3Fid=3Dh15=
+cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199d1&e=3DV1QubWNfaWQ9ZV9ETTQ1Mj=
+E1MCZXVC50c3JjPWVtYWlsJmV0eXBlPUFjcV9Oc3VfU3BlY19NaWxsaW9uYWlyZSZ1dG1zb3VyY=
+2U9ZW1haWwmdXRtX21lZGl1bT1BY3FfTnN1X1NwZWNfTWlsbGlvbmFpcmUyMDI0MTExMiZ1dG1f=
+Y2FtcGFpZ249RE00NTIxNTA&s=3DHTIvnpSSw3N-VSV-9tJKAP1P8tWhINu4VpExuTXQIWw"><i=
+mg width=3D"460" style=3D"display:block; width:100%; height:auto;" src=3D"h=
+ttps://www.telegraph.co.uk/content/dam/eip/particles/gen/2024/11/01/cab91ce=
+a-ed22-4a85-898e-9a30d0369349.png=3Fimwidth=3D640" alt=3D"Newsletter image =
+header">
+</a>
+</div><!--<![endif]-->
+</td>
+</tr>
+</table>
+<div style=3D"height:16px; line-height:16px; mso-line-height-rule:exactly;"=
+>&nbsp;</div><!-- //[H6] FULL WIDTH IMAGE --><!-- [H12] BODY COPY -->
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" role=
+=3D"presentation">
+<tr>
+<td style=3D"padding:0 16px 0 16px;">
+<p style=3D"margin:0; font-family: Georgia,'Times New Roman',serif !importa=
+nt; font-size:1.125em; color:#333333; line-height:1.25em; text-align:center=
+;">Dear Reader,<br><br>Do you want to be rich=3F<br><br><a style=3D"color:#=
+000000; text-decoration:underline;" target=3D"_blank" href=3D"http://t3.ema=
+ils.telegraph.co.uk/r/=3Fid=3Dh15cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,=
+a199d2&e=3DV1QubWNfaWQ9ZV9ETTQ1MjE1MCZXVC50c3JjPWVtYWlsJmV0eXBlPUFjcV9Oc3Vf=
+U3BlY19NaWxsaW9uYWlyZSZ1dG1zb3VyY2U9ZW1haWwmdXRtX21lZGl1bT1BY3FfTnN1X1NwZWN=
+fTWlsbGlvbmFpcmUyMDI0MTExMiZ1dG1fY2FtcGFpZ249RE00NTIxNTA&s=3DmPKTyAzNKzrakW=
+WVYDhUXVeUwvD5FhSQpZJUJ3QbQ1c"><strong style=3D"">Sign up</strong></a> for =
+our new, six-part weekly newsletter today. <br><br>Get the knowledge and to=
+ols you need to build your wealth &#x2013; and better understand your finan=
+ces, courtesy of Telegraph Money&#x2019;s experts.<br><br>From investing in=
+ property to prioritising your pension, our advice will put you in good sta=
+nding to reach that seven-figure sum.</p>
+</td>
+</tr>
+</table>
+<div style=3D"height:16px; line-height:16px; mso-line-height-rule:exactly;"=
+>&nbsp;</div><!-- //[H12] BODY COPY --><!-- [H6] FULL WIDTH IMAGE -->
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" role=
+=3D"presentation">
+<tr>
+<td>
+<div class=3D"dsk" style=3D"display:none; max-height:0; visibility:hidden;"=
+>
+<a target=3D"_blank" href=3D"http://t3.emails.telegraph.co.uk/r/=3Fid=3Dh15=
+cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199d3&e=3DV1QubWNfaWQ9ZV9ETTQ1Mj=
+E1MCZXVC50c3JjPWVtYWlsJmV0eXBlPUFjcV9Oc3VfU3BlY19NaWxsaW9uYWlyZSZ1dG1zb3VyY=
+2U9ZW1haWwmdXRtX21lZGl1bT1BY3FfTnN1X1NwZWNfTWlsbGlvbmFpcmUyMDI0MTExMiZ1dG1f=
+Y2FtcGFpZ249RE00NTIxNTA&s=3DiF1TzA-Mdx07TuTHCW7jDa2p7t6Q5W_MW9cIl6merEs"><i=
+mg width=3D"600" style=3D"display:block; width:100%; height:auto;" src=3D"h=
+ttps://www.telegraph.co.uk/content/dam/eip/particles/gen/2024/11/04/5691e44=
+6-0157-4c47-b302-80687e9591c5.png=3Fimwidth=3D960" alt=3D"Sign up now">
+</a>
+</div><!--[if false]><!-->
+<div class=3D"mob" style=3D"mso-hide:all;">
+<a target=3D"_blank" href=3D"http://t3.emails.telegraph.co.uk/r/=3Fid=3Dh15=
+cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199d4&e=3DV1QubWNfaWQ9ZV9ETTQ1Mj=
+E1MCZXVC50c3JjPWVtYWlsJmV0eXBlPUFjcV9Oc3VfU3BlY19NaWxsaW9uYWlyZSZ1dG1zb3VyY=
+2U9ZW1haWwmdXRtX21lZGl1bT1BY3FfTnN1X1NwZWNfTWlsbGlvbmFpcmUyMDI0MTExMiZ1dG1f=
+Y2FtcGFpZ249RE00NTIxNTA&s=3DjpZFYnso5FBAToZwymsngwoa7_iAWP7GJcOR_WrSHMc"><i=
+mg width=3D"460" style=3D"display:block; width:100%; height:auto;" src=3D"h=
+ttps://www.telegraph.co.uk/content/dam/eip/particles/gen/2024/11/04/6ca5396=
+7-254a-48d2-98fc-46b15b1f1d10.png=3Fimwidth=3D640" alt=3D"Sign up now">
+</a>
+</div><!--<![endif]-->
+</td>
+</tr>
+</table>
+<div style=3D"height:16px; line-height:16px; mso-line-height-rule:exactly;"=
+>&nbsp;</div><!-- //[H6] FULL WIDTH IMAGE --><!-- [F1] FOOTER -->
+<table width=3D"100%" class=3D"footer" bgcolor=3D"#f8f8f8" cellspacing=3D"0=
+" cellpadding=3D"0" border=3D"0" role=3D"presentation">
+<tr>
+<td style=3D"padding:24px 16px 0 16px; text-align:left;">
+<p style=3D"margin:0 0 0.5em 0; font-family:Arial,Helvetica,sans-serif; fon=
+t-size:0.75em; color:#767676; line-height:1.5em;">You have received this em=
+ail because you are registered with The Telegraph. Please do not reply to t=
+his email.</p>
+<p style=3D"margin:0 0 0.5em 0; font-family:Arial,Helvetica,sans-serif; fon=
+t-size:0.75em; color:#767676; line-height:1.5em;">If you no longer wish to =
+receive these messages, please <a target=3D"_blank" style=3D"color:#767676;=
+ text-decoration: underline;" href=3D"http://t3.emails.telegraph.co.uk/r/=
+=3Fid=3Dh15cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199d5&e=3DV1QubWNfaWQ=
+9ZV9ETTQ1MjE1MCZXVC50c3JjPWVtYWlsJmV0eXBlPUFjcV9Oc3VfU3BlY19NaWxsaW9uYWlyZS=
+Z1dG1zb3VyY2U9ZW1haWwmdXRtX21lZGl1bT1BY3FfTnN1X1NwZWNfTWlsbGlvbmFpcmUyMDI0M=
+TExMiZ1dG1fY2FtcGFpZ249RE00NTIxNTAmcDE9JTQwUGZ6ckNFYnRFR2R0a296dGxwSDZPQWZt=
+ZzBSalNqNWJlR0thbW1aNEM5VUZaYWtqc1d4aHlXMHN1Q3dQMUV4OSZwMj1OZXdfQlRNX1NvbA&=
+s=3DebeYHcmLluERleLYogOAeJINpZC8Nkk3RQW22StHWpM">unsubscribe</a>.</p>
+<p style=3D"margin:0 0 0.5em 0; font-family:Arial,Helvetica,sans-serif; fon=
+t-size:0.75em; color:#767676; line-height:1.5em;">In accordance with the 20=
+18 Data Protection Act, Telegraph Media Group Holdings Limited is committed=
+ to protecting your privacy. If you wish to know more please access our <a =
+href=3D"http://t3.emails.telegraph.co.uk/r/=3Fid=3Dh15cb7a0e-2dd1-4ee8-a0d9=
+-ea3a8e8aa8e0,f2326e,a199d6&e=3DV1QubWNfaWQ9ZV9ETTQ1MjE1MCZXVC50c3JjPWVtYWl=
+sJmV0eXBlPUFjcV9Oc3VfU3BlY19NaWxsaW9uYWlyZSZ1dG1zb3VyY2U9ZW1haWwmdXRtX21lZG=
+l1bT1BY3FfTnN1X1NwZWNfTWlsbGlvbmFpcmUyMDI0MTExMiZ1dG1fY2FtcGFpZ249RE00NTIxN=
+TA&s=3DEMyIqjRkY4yrlnVH5_e_TRe600BKg4OTtVOXfP_0F18" target=3D"_blank" style=
+=3D"color:#767676; text-decoration: underline;">privacy policy</a>.</p>
+<p style=3D"margin:0; font-family:Arial,Helvetica,sans-serif; font-size:0.7=
+5em; color:#767676; line-height:1.5em;">This email is from Telegraph Media =
+Group Holdings Limited - 111 Buckingham Palace Road, London <span style=3D"=
+white-space:nowrap;">SW1W 0DT</span>. Registered in England under <span sty=
+le=3D"white-space:nowrap;">No 14551860</span>.</p>
+</td>
+</tr>
+<tr>
+<td style=3D"padding:16px 16px 24px 16px;">
+<table align=3D"left" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" role=
+=3D"presentation">
+<tr>
+<td valign=3D"top">
+<a target=3D"_blank" href=3D"http://t3.emails.telegraph.co.uk/r/=3Fid=3Dh15=
+cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199d7&e=3DV1QubWNfaWQ9ZV9ETTQ1Mj=
+E1MCZXVC50c3JjPWVtYWlsJmV0eXBlPUFjcV9Oc3VfU3BlY19NaWxsaW9uYWlyZSZ1dG1zb3VyY=
+2U9ZW1haWwmdXRtX21lZGl1bT1BY3FfTnN1X1NwZWNfTWlsbGlvbmFpcmUyMDI0MTExMiZ1dG1f=
+Y2FtcGFpZ249RE00NTIxNTA&s=3DkYBeWHd9K58SR48TUNINb7rF2Az2vjICEf5BqO1J_qA"><!=
+--[if !mso]><!-->
+<img class=3D"dark" src=3D"https://www.telegraph.co.uk/content/dam/email-de=
+sign-systems/subscriptions/darkmode-friendly-icons/FAECBOOK-LIGHT.png" widt=
+h=3D"32" height=3D"32" alt=3D"Facebook" border=3D"0" style=3D"display:none;=
+ max-height:0; visibility:hidden; mso-hide:all;"><!--<![endif]-->
+<img class=3D"light" src=3D"https://www.telegraph.co.uk/content/dam/email-d=
+esign-systems/subscriptions/icons-v4/FACEBOOK-DARK.png" width=3D"32" height=
+=3D"32" alt=3D"Facebook" style=3D"display:block;">
+</a>
+</td>
+<td width=3D"8" style=3D"font-size:1px; line-height:1px;">&nbsp;</td>
+<td valign=3D"top">
+<a target=3D"_blank" href=3D"http://t3.emails.telegraph.co.uk/r/=3Fid=3Dh15=
+cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199d8"><!--[if !mso]><!-->
+<img class=3D"dark" src=3D"https://www.telegraph.co.uk/content/dam/email-de=
+sign-systems/subscriptions/darkmode-friendly-icons/TWITTER-LIGHT.png" width=
+=3D"32" height=3D"32" alt=3D"Twitter" border=3D"0" style=3D"display:none; m=
+ax-height:0; visibility:hidden; mso-hide:all;"><!--<![endif]-->
+<img class=3D"light" src=3D"https://www.telegraph.co.uk/content/dam/email-d=
+esign-systems/subscriptions/icons-v4/TWITTER-DARK.png" width=3D"32" height=
+=3D"32" alt=3D"Twitter" style=3D"display:block;">
+</a>
+</td>
+<td width=3D"8" style=3D"font-size:1px; line-height:1px;">&nbsp;</td>
+<td valign=3D"top">
+<a target=3D"_blank" href=3D"http://t3.emails.telegraph.co.uk/r/=3Fid=3Dh15=
+cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199d9"><!--[if !mso]><!-->
+<img class=3D"dark" src=3D"https://www.telegraph.co.uk/content/dam/email-de=
+sign-systems/subscriptions/darkmode-friendly-icons/YOUTUBE-LIGHT.png" width=
+=3D"32" height=3D"32" alt=3D"Youtube" border=3D"0" style=3D"display:none; m=
+ax-height:0; visibility:hidden; mso-hide:all;"><!--<![endif]-->
+<img class=3D"light" src=3D"https://www.telegraph.co.uk/content/dam/email-d=
+esign-systems/subscriptions/darkmode-friendly-icons/YOUTUBE-DARK.png" width=
+=3D"32" height=3D"32" alt=3D"Youtube" style=3D"display:block;">
+</a>
+</td>
+<td width=3D"8" style=3D"font-size:1px; line-height:1px;">&nbsp;</td>
+<td valign=3D"top">
+<a target=3D"_blank" href=3D"http://t3.emails.telegraph.co.uk/r/=3Fid=3Dh15=
+cb7a0e-2dd1-4ee8-a0d9-ea3a8e8aa8e0,f2326e,a199da"><!--[if !mso]><!-->
+<img class=3D"dark" src=3D"https://www.telegraph.co.uk/content/dam/email-de=
+sign-systems/subscriptions/darkmode-friendly-icons/INSTAGRAM-LIGHT.png" wid=
+th=3D"32" height=3D"32" alt=3D"Instagram" border=3D"0" style=3D"display:non=
+e; max-height:0; visibility:hidden; mso-hide:all;"><!--<![endif]-->
+<img class=3D"light" src=3D"https://www.telegraph.co.uk/content/dam/email-d=
+esign-systems/subscriptions/darkmode-friendly-icons/INSTAGRAM-DARK.png" wid=
+th=3D"32" height=3D"32" alt=3D"Instagram" style=3D"display:block;">
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table><!-- //[F1] FOOTER -->
+</div><!--[if true]>
+          </td>
+        </tr>
+      </table>
+      <![endif]-->
+</div>
+</body>
+</html>
+
+------=_NextPart_298_072116BF.072116BF--
+
